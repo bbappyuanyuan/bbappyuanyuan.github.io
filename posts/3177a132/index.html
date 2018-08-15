@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'BFVXQ3J46P',
+      apiKey: 'db66c5aa1629d374a7181952fd387b6a',
+      indexName: 'hexo',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="这套题偏难 _(:з」∠)_  A. No Nine 求 [L, R] 的合法数字个数，可以转化为求 [1, x] 的合法数字个数。 不能有数字 9，也就是只允许数字 0～8，这就相当于九进制数，即 [1, x] 的不含 9 的数字个数有 base9(x) 个（x 为不含 9 的十进制数）。而且每连续 9 个不含 9 的数字里，有且只有一个被 9 整除的数（九进制下末位为 0 的数）。因此先把 x">
+<meta name="keywords" content="Kickstart">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kickstart Round B 2018 题解">
+<meta property="og:url" content="https://bbappyuanyuan.github.io/posts/3177a132/index.html">
+<meta property="og:site_name" content="bbappyuanyuan 的博客">
+<meta property="og:description" content="这套题偏难 _(:з」∠)_  A. No Nine 求 [L, R] 的合法数字个数，可以转化为求 [1, x] 的合法数字个数。 不能有数字 9，也就是只允许数字 0～8，这就相当于九进制数，即 [1, x] 的不含 9 的数字个数有 base9(x) 个（x 为不含 9 的十进制数）。而且每连续 9 个不含 9 的数字里，有且只有一个被 9 整除的数（九进制下末位为 0 的数）。因此先把 x">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://bbappyuanyuan.github.io/posts/3177a132/p3.PNG">
+<meta property="og:updated_time" content="2018-06-04T16:56:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kickstart Round B 2018 题解">
+<meta name="twitter:description" content="这套题偏难 _(:з」∠)_  A. No Nine 求 [L, R] 的合法数字个数，可以转化为求 [1, x] 的合法数字个数。 不能有数字 9，也就是只允许数字 0～8，这就相当于九进制数，即 [1, x] 的不含 9 的数字个数有 base9(x) 个（x 为不含 9 的十进制数）。而且每连续 9 个不含 9 的数字里，有且只有一个被 9 整除的数（九进制下末位为 0 的数）。因此先把 x">
+<meta name="twitter:image" content="https://bbappyuanyuan.github.io/posts/3177a132/p3.PNG">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="bbappyuanyuan 的博客" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="https://bbappyuanyuan.github.io/posts/3177a132/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Kickstart Round B 2018 题解 | bbappyuanyuan 的博客</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111501815-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-111501815-1');
+</script>
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?e9db1859ae31ed3d4c03ca64c5221ff1";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">bbappyuanyuan 的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">有些事，现在不做，以后再也不会做了</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://bbappyuanyuan.github.io/posts/3177a132/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="bbappyuanyuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="bbappyuanyuan 的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Kickstart Round B 2018 题解
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-06-05 00:56:54" itemprop="dateCreated datePublished" datetime="2018-06-05T00:56:54+08:00">2018-06-05</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Code-Jam/" itemprop="url" rel="index"><span itemprop="name">Code Jam</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/posts/3177a132/" class="leancloud_visitors" data-flag-title="Kickstart Round B 2018 题解">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这套题偏难 _(:з」∠)_</p>
+<h2 id="a-no-nine"><a class="markdownIt-Anchor" href="#a-no-nine"></a> <a href="https://code.google.com/codejam/contest/10284486/dashboard#s=p0" target="_blank" rel="noopener">A. No Nine</a></h2>
+<p>求 [L, R] 的合法数字个数，可以转化为求 [1, x] 的合法数字个数。</p>
+<p>不能有数字 9，也就是只允许数字 0～8，这就相当于九进制数，即 [1, x] 的不含 9 的数字个数有 base9(x) 个（x 为不含 9 的十进制数）。而且每连续 9 个不含 9 的数字里，有且只有一个被 9 整除的数（九进制下末位为 0 的数）。因此先把 x 的末位变成 0，让剩余的不含 9 的数字个数能被 9 整除，答案为 <code>brute_force([x - x % 10, x]) + 8 / 9 * base9(x - x % 10)</code>，两部分分别对应代码里的 <code>ret1</code> 和 <code>ret2</code>。</p>
+<a id="more"></a>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ctime&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;climits&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;utility&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unordered_map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unordered_set&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> randomize srand((unsigned)time(NULL))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> random(x) ((rand() * (rand() + rand())) % (x))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ms(x, y) memset(x, y, sizeof(x))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mc(x, y) memcpy(x, y, sizeof(x))</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> T;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">f</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> ret1 = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (x % <span class="number">10</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (x % <span class="number">9</span> != <span class="number">0</span>) ++ret1;</span><br><span class="line">        --x;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (x % <span class="number">9</span> != <span class="number">0</span>) ++ret1; <span class="comment">// ending 0</span></span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> ret2 = <span class="number">0</span>, base = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (x) &#123;</span><br><span class="line">        ret2 = ret2 + base * (x % <span class="number">10</span>);</span><br><span class="line">        x /= <span class="number">10</span>;</span><br><span class="line">        base *= <span class="number">9</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ret1 + ret2 / <span class="number">9</span> * <span class="number">8</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (x % <span class="number">9</span> == <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">while</span> (x) &#123;</span><br><span class="line">        <span class="keyword">if</span> (x % <span class="number">10</span> == <span class="number">9</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        x /= <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">bf</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> a, <span class="keyword">long</span> <span class="keyword">long</span> b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> ret = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> i = a; i &lt;= b; ++i)</span><br><span class="line">        <span class="keyword">if</span> (check(i)) &#123;</span><br><span class="line"><span class="comment">//            cout &lt;&lt; i &lt;&lt; endl;</span></span><br><span class="line">            ++ret;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; T;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> cs = <span class="number">1</span>; cs &lt;= T; ++cs) &#123;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> F, L;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; F &gt;&gt; L;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"Case #"</span> &lt;&lt; cs &lt;&lt; <span class="string">": "</span> &lt;&lt; f(L) - f(F) + <span class="number">1</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="comment">//        cout &lt;&lt; "Case #" &lt;&lt; cs &lt;&lt; ": " &lt;&lt; bf(F, L) &lt;&lt; endl;</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="b-sherlock-and-the-bit-strings"><a class="markdownIt-Anchor" href="#b-sherlock-and-the-bit-strings"></a> <a href="https://code.google.com/codejam/contest/10284486/dashboard#s=p1" target="_blank" rel="noopener">B. Sherlock and the Bit Strings</a></h2>
+<p>关键信息 <code>Bi - Ai ≤ 15</code>，递推记录最近的 16 位，f[i][j] 表示前 i 位已确定，并且最后 16 位为 j（j ≤ 2^16）的可行方案数。从后往前（i 从大到小）递推，递推式为 <code>f[i][j] = f[i + 1][shl1[j]] + f[i + 1][shl1[j] ^ 1]</code>，shl1[j] 和 shl1[j]^1 分别为 j 去掉首位、末尾添加 0 或 1 的状态（保持 16 位）。</p>
+<p>对于每个限制 [Ak, Bk, Ck]，只需要在求 f[i][j], i = Bk 的时候判断即可，保证不合法的方案最终不会传递到前面。</p>
+<p>时间复杂度为 <code>O(2 ^ 16 * (n + k))</code>，空间复杂度为 <code>O(2 ^ 16 * n)</code>。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ctime&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;climits&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;utility&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unordered_map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unordered_set&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> randomize srand((unsigned)time(NULL))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> random(x) ((rand() * (rand() + rand())) % (x))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ms(x, y) memset(x, y, sizeof(x))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mc(x, y) memcpy(x, y, sizeof(x))</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">100</span> + <span class="number">2</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">long</span> MAXP = <span class="number">1e18</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> cnt[<span class="number">1</span> &lt;&lt; <span class="number">16</span>], shl1[<span class="number">1</span> &lt;&lt; <span class="number">16</span>];</span><br><span class="line"><span class="keyword">int</span> T, n, k;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> p;</span><br><span class="line"><span class="built_in">vector</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt; limits[MAXN];</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> f[MAXN][<span class="number">1</span> &lt;&lt; <span class="number">16</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span> pos, <span class="keyword">int</span> status)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> limit : limits[pos])</span><br><span class="line">        <span class="keyword">if</span> (cnt[status &amp; ((<span class="number">1</span> &lt;&lt; limit.first) - <span class="number">1</span>)] != limit.second)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cnt[<span class="number">0</span>] = shl1[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; <span class="number">1</span> &lt;&lt; <span class="number">16</span>; ++i) &#123;</span><br><span class="line">        cnt[i] = cnt[i &gt;&gt; <span class="number">1</span>] + (i &amp; <span class="number">1</span>); <span class="comment">// number of 1</span></span><br><span class="line">        shl1[i] = (i &lt;&lt; <span class="number">1</span>) &amp; ((<span class="number">1</span> &lt;&lt; <span class="number">16</span>) - <span class="number">1</span>); <span class="comment">// shift left ignoring the first bit</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; T;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> cs = <span class="number">1</span>; cs &lt;= T; ++cs) &#123;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; n &gt;&gt; k &gt;&gt; p;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">            limits[i].clear();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k; ++i) &#123;</span><br><span class="line">            <span class="keyword">int</span> a, b, c;</span><br><span class="line">            <span class="built_in">cin</span> &gt;&gt; a &gt;&gt; b &gt;&gt; c;</span><br><span class="line">            limits[b].emplace_back(make_pair(b - a + <span class="number">1</span>, c)); <span class="comment">// (length, count)</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        ms(f, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">1</span> &lt;&lt; <span class="number">16</span>; ++j)</span><br><span class="line">            <span class="keyword">if</span> (check(n, j))</span><br><span class="line">                f[n][j] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = n - <span class="number">1</span>; i &gt; <span class="number">0</span>; --i)</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">1</span> &lt;&lt; <span class="number">16</span>; ++j)</span><br><span class="line">                <span class="keyword">if</span> (check(i, j)) &#123;</span><br><span class="line">                    f[i][j] = f[i + <span class="number">1</span>][shl1[j]] + f[i + <span class="number">1</span>][shl1[j] ^ <span class="number">1</span>];</span><br><span class="line">                    <span class="keyword">if</span> (f[i][j] &gt; MAXP) f[i][j] = MAXP + <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"Case #"</span> &lt;&lt; cs &lt;&lt; <span class="string">": "</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>, j = <span class="number">0</span>; i &lt;= n; ++i, j = shl1[j])</span><br><span class="line">            <span class="keyword">if</span> (p &lt;= f[i][j]) &#123;</span><br><span class="line">                <span class="built_in">cout</span> &lt;&lt; <span class="string">'0'</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                p -= f[i][j];</span><br><span class="line">                j ^= <span class="number">1</span>;</span><br><span class="line">                <span class="built_in">cout</span> &lt;&lt; <span class="string">'1'</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="c-kings-circle"><a class="markdownIt-Anchor" href="#c-kings-circle"></a> <a href="https://code.google.com/codejam/contest/10284486/dashboard#s=p2" target="_blank" rel="noopener">C. King’s Circle</a></h2>
+<p>首先必须想好怎样的三个点可以形成矩形：</p>
+<ol>
+<li>其中两点横坐标或纵坐标相等可以形成矩形；</li>
+<li>从左向右排列，第二个点最高或最低（形如 ‘⋁’ 或 ‘⋀’），可以形成矩形；</li>
+<li>横坐标从小到大排列下，只有纵坐标严格递增或严格递减的情况，才不可以形成矩形，且只有这一种不可以形成矩形的情况。</li>
+</ol>
+<p>3 的情况比 1 和 2 的情况更好判断，于是把答案转化为 <code>C(n, 3) - 不可以形成矩形的三点集数目</code>。</p>
+<p>考虑每个点 p，从它往四个方向扩展的点集分别记为 n1、n2、n3 和 n4，如下图所示：</p>
+<img src="/posts/3177a132/p3.PNG" title="丑陋的示意图">
+<p>{n1 里的任意一点, p, n3 里的任意一点} 和<br>
+{n2 里的任意一点, p, n4 里的任意一点} 的三点集不可以形成矩形，这里共有 <code>|n1| * |n3| + |n2| * |n4|</code> 种方案。</p>
+<p>这种多维范围查询，可以使用 <a href="https://en.wikipedia.org/wiki/Range_tree" target="_blank" rel="noopener">range tree</a> 这一数据结构，可以参考这个资料：<a href="http://www.cs.wustl.edu/~taoju/cse546/lectures/Lecture21_rangequery_2d.pdf" target="_blank" rel="noopener">http://www.cs.wustl.edu/~taoju/cse546/lectures/Lecture21_rangequery_2d.pdf</a>。时间复杂度 <code>O(n * log(n) * log(n))</code>，可以降到 <code>O(n * log(n))</code>。</p>
+<p>以下版本是原生的 range tree，运行 large-practice 数据需要大概 5 分钟。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ctime&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;climits&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;memory&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;utility&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;memory&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unordered_map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unordered_set&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> randomize srand((unsigned)time(NULL))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> random(x) ((rand() * (rand() + rand())) % (x))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ms(x, y) memset(x, y, sizeof(x))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mc(x, y) memcpy(x, y, sizeof(x))</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">500000</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXM = <span class="number">1000000</span> + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">point_t</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> x, y;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">range_tree_node_t</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> size; <span class="comment">// # of node</span></span><br><span class="line">    <span class="keyword">int</span> l, r; <span class="comment">// value range</span></span><br><span class="line">    <span class="keyword">int</span> mid; <span class="comment">// &lt;= mid, left; &gt; mid, right</span></span><br><span class="line">    <span class="built_in">unique_ptr</span>&lt;<span class="keyword">range_tree_node_t</span>&gt; left, right;</span><br><span class="line">    <span class="built_in">unique_ptr</span>&lt;<span class="keyword">range_tree_node_t</span>&gt; ytree;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">range_tree_node_t</span>() &#123;</span><br><span class="line">        left = <span class="literal">nullptr</span>;</span><br><span class="line">        right = <span class="literal">nullptr</span>;</span><br><span class="line">        ytree = <span class="literal">nullptr</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> T, n, m;</span><br><span class="line"><span class="keyword">point_t</span> p[MAXN];</span><br><span class="line"><span class="keyword">int</span> px[MAXN], py[MAXN];</span><br><span class="line"><span class="built_in">unique_ptr</span>&lt;<span class="keyword">range_tree_node_t</span>&gt; xtree;</span><br><span class="line"><span class="keyword">int</span> tmpx[MAXN], tmpy[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">build_range_ytree</span><span class="params">(<span class="built_in">unique_ptr</span>&lt;<span class="keyword">range_tree_node_t</span>&gt; &amp;ytree, <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (l &gt;= r) <span class="keyword">return</span>;</span><br><span class="line"><span class="comment">//    printf("build_range_ytree %d %d\n", l, r);</span></span><br><span class="line">    ytree = make_unique&lt;<span class="keyword">range_tree_node_t</span>&gt;();</span><br><span class="line">    ytree-&gt;size = r - l;</span><br><span class="line">    ytree-&gt;l = py[l];</span><br><span class="line">    ytree-&gt;r = py[r - <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">int</span> m = <span class="number">0</span>;</span><br><span class="line">    tmpy[m++] = py[l]; <span class="comment">// unique y</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = l + <span class="number">1</span>; i &lt; r; ++i)</span><br><span class="line">        <span class="keyword">if</span> (py[i] != tmpy[m - <span class="number">1</span>])</span><br><span class="line">            tmpy[m++] = py[i];</span><br><span class="line">    ytree-&gt;mid = tmpy[(m - <span class="number">1</span>) &gt;&gt; <span class="number">1</span>]; <span class="comment">// median</span></span><br><span class="line">    <span class="keyword">if</span> (m &gt; <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">int</span> mid = l;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = l; i &lt; r; ++i)</span><br><span class="line">            <span class="keyword">if</span> (py[i] &lt;= ytree-&gt;mid)</span><br><span class="line">                mid = i;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        build_range_ytree(ytree-&gt;left, l, mid + <span class="number">1</span>);</span><br><span class="line">        build_range_ytree(ytree-&gt;right, mid + <span class="number">1</span>, r);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">build_range_xtree</span><span class="params">(<span class="built_in">unique_ptr</span>&lt;<span class="keyword">range_tree_node_t</span>&gt; &amp;xtree, <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (l &gt;= r) <span class="keyword">return</span>;</span><br><span class="line"><span class="comment">//    printf("build_range_xtree %d %d\n", l, r);</span></span><br><span class="line">    xtree = make_unique&lt;<span class="keyword">range_tree_node_t</span>&gt;();</span><br><span class="line">    xtree-&gt;size = r - l;</span><br><span class="line">    xtree-&gt;l = px[l];</span><br><span class="line">    xtree-&gt;r = px[r - <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">int</span> m = <span class="number">0</span>;</span><br><span class="line">    tmpx[m++] = px[l]; <span class="comment">// unique x</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = l + <span class="number">1</span>; i &lt; r; ++i)</span><br><span class="line">        <span class="keyword">if</span> (px[i] != tmpx[m - <span class="number">1</span>])</span><br><span class="line">            tmpx[m++] = px[i];</span><br><span class="line">    xtree-&gt;mid = tmpx[(m - <span class="number">1</span>) &gt;&gt; <span class="number">1</span>]; <span class="comment">// median</span></span><br><span class="line">    <span class="keyword">if</span> (m &gt; <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">int</span> mid = l;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = l; i &lt; r; ++i)</span><br><span class="line">            <span class="keyword">if</span> (px[i] &lt;= xtree-&gt;mid)</span><br><span class="line">                mid = i;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        build_range_xtree(xtree-&gt;left, l, mid + <span class="number">1</span>);</span><br><span class="line">        build_range_xtree(xtree-&gt;right, mid + <span class="number">1</span>, r);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// merge sort on y</span></span><br><span class="line">        <span class="built_in">memcpy</span>(tmpy + l, py + l, <span class="keyword">sizeof</span>(<span class="keyword">int</span>) * (r - l));</span><br><span class="line">        m = l;</span><br><span class="line">        <span class="keyword">int</span> i1 = l, i2 = mid + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (m &lt; r) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i2 &gt;= r || i1 &lt; mid + <span class="number">1</span> &amp;&amp; tmpy[i1] &lt; tmpy[i2])</span><br><span class="line">                py[m++] = tmpy[i1++];</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                py[m++] = tmpy[i2++];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    build_range_ytree(xtree-&gt;ytree, l, r);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">queryy</span><span class="params">(<span class="built_in">unique_ptr</span>&lt;<span class="keyword">range_tree_node_t</span>&gt; &amp;ytree, <span class="keyword">int</span> lx, <span class="keyword">int</span> rx, <span class="keyword">int</span> ly, <span class="keyword">int</span> ry)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (ytree-&gt;l &gt; ry || ytree-&gt;r &lt; ly) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (ly &lt;= ytree-&gt;l &amp;&amp; ytree-&gt;r &lt;= ry)</span><br><span class="line">        <span class="keyword">return</span> ytree-&gt;size;</span><br><span class="line">    <span class="keyword">return</span> queryy(ytree-&gt;left, lx, rx, ly, ry) + queryy(ytree-&gt;right, lx, rx, ly, ry);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">queryx</span><span class="params">(<span class="built_in">unique_ptr</span>&lt;<span class="keyword">range_tree_node_t</span>&gt; &amp;xtree, <span class="keyword">int</span> lx, <span class="keyword">int</span> rx, <span class="keyword">int</span> ly, <span class="keyword">int</span> ry)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (xtree-&gt;l &gt; rx || xtree-&gt;r &lt; lx) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (lx &lt;= xtree-&gt;l &amp;&amp; xtree-&gt;r &lt;= rx)</span><br><span class="line">        <span class="keyword">return</span> queryy(xtree-&gt;ytree, lx, rx, ly, ry);</span><br><span class="line">    <span class="keyword">return</span> queryx(xtree-&gt;left, lx, rx, ly, ry) + queryx(xtree-&gt;right, lx, rx, ly, ry);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; T;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> cs = <span class="number">1</span>; cs &lt;= T; ++cs) &#123;</span><br><span class="line">        <span class="keyword">int</span> a, b, c, d, e, f, m;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; n &gt;&gt; p[<span class="number">0</span>].x &gt;&gt; p[<span class="number">0</span>].y &gt;&gt; a &gt;&gt; b &gt;&gt; c &gt;&gt; d &gt;&gt; e &gt;&gt; f &gt;&gt; m;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            p[i].x = ((<span class="keyword">long</span> <span class="keyword">long</span>) a * p[i - <span class="number">1</span>].x + (<span class="keyword">long</span> <span class="keyword">long</span>) b * p[i - <span class="number">1</span>].y + c) % m;</span><br><span class="line">            p[i].y = ((<span class="keyword">long</span> <span class="keyword">long</span>) d * p[i - <span class="number">1</span>].x + (<span class="keyword">long</span> <span class="keyword">long</span>) e * p[i - <span class="number">1</span>].y + f) % m;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        sort(p, p + n, [](<span class="keyword">const</span> <span class="keyword">point_t</span> &amp;a, <span class="keyword">const</span> <span class="keyword">point_t</span> &amp;b) &#123;</span><br><span class="line">            <span class="keyword">return</span> a.x &lt; b.x || a.x == b.x &amp;&amp; a.y &lt; b.y;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            px[i] = p[i].x;</span><br><span class="line">            py[i] = p[i].y;</span><br><span class="line">        &#125;</span><br><span class="line">        build_range_xtree(xtree, <span class="number">0</span>, n);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> ans = (<span class="keyword">long</span> <span class="keyword">long</span>) n * (n - <span class="number">1</span>) * (n - <span class="number">2</span>) / <span class="number">3</span> / <span class="number">2</span>; <span class="comment">// C(n, 3)</span></span><br><span class="line"><span class="comment">//        n2 | n1</span></span><br><span class="line"><span class="comment">//        ---+---</span></span><br><span class="line"><span class="comment">//        n3 | n4</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            <span class="keyword">int</span> n1 = queryx(xtree, p[i].x + <span class="number">1</span>, MAXM, p[i].y + <span class="number">1</span>, MAXM);</span><br><span class="line">            <span class="keyword">int</span> n2 = queryx(xtree, -MAXM, p[i].x - <span class="number">1</span>, p[i].y + <span class="number">1</span>, MAXM);</span><br><span class="line">            <span class="keyword">int</span> n3 = queryx(xtree, -MAXM, p[i].x - <span class="number">1</span>, -MAXM, p[i].y - <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">int</span> n4 = queryx(xtree, p[i].x + <span class="number">1</span>, MAXM, -MAXM, p[i].y - <span class="number">1</span>);</span><br><span class="line">            ans -= (<span class="keyword">long</span> <span class="keyword">long</span>) n1 * n3 + (<span class="keyword">long</span> <span class="keyword">long</span>) n2 * n4;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"Case #"</span> &lt;&lt; cs &lt;&lt; <span class="string">": "</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以下版本利用查询特点进行优化，运行 large-practice 数据需要大概 50 秒。优化的地方包括：</p>
+<ol>
+<li>由于只有包含端点的查询，第二维 ytree 不使用树结构，使用有序数组；</li>
+<li>由于查询的 x 有序（升序），手动维护相关的 xtree 节点（xnode 数组）。</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ctime&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;climits&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;memory&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;utility&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;memory&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unordered_map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unordered_set&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> randomize srand((unsigned)time(NULL))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> random(x) ((rand() * (rand() + rand())) % (x))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ms(x, y) memset(x, y, sizeof(x))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mc(x, y) memcpy(x, y, sizeof(x))</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">500000</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXM = <span class="number">1000000</span> + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">point_t</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> x, y;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">range_tree_node_t</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> size; <span class="comment">// # of node</span></span><br><span class="line">    <span class="keyword">int</span> l, r; <span class="comment">// value range</span></span><br><span class="line">    <span class="keyword">int</span> mid; <span class="comment">// &lt;= mid, left; &gt; mid, right</span></span><br><span class="line">    <span class="built_in">shared_ptr</span>&lt;<span class="keyword">range_tree_node_t</span>&gt; left, right, papa;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; y;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">range_tree_node_t</span>(<span class="built_in">shared_ptr</span>&lt;<span class="keyword">range_tree_node_t</span>&gt; _papa) &#123;</span><br><span class="line">        left = <span class="literal">nullptr</span>;</span><br><span class="line">        right = <span class="literal">nullptr</span>;</span><br><span class="line">        papa = _papa;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> T, n, m;</span><br><span class="line"><span class="keyword">point_t</span> p[MAXN];</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; px, py;</span><br><span class="line"><span class="built_in">shared_ptr</span>&lt;<span class="keyword">range_tree_node_t</span>&gt; xtree;</span><br><span class="line"><span class="keyword">int</span> tmpx[MAXN], tmpy[MAXN];</span><br><span class="line"><span class="built_in">shared_ptr</span>&lt;<span class="keyword">range_tree_node_t</span>&gt; dest[MAXN];</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="built_in">shared_ptr</span>&lt;<span class="keyword">range_tree_node_t</span>&gt;&gt; xnode;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">build_range_xtree</span><span class="params">(<span class="built_in">shared_ptr</span>&lt;<span class="keyword">range_tree_node_t</span>&gt; &amp;xtree, <span class="built_in">shared_ptr</span>&lt;<span class="keyword">range_tree_node_t</span>&gt; papa, <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (l &gt;= r) <span class="keyword">return</span>;</span><br><span class="line"><span class="comment">//    printf("build_range_xtree %d %d\n", l, r);</span></span><br><span class="line">    xtree = make_shared&lt;<span class="keyword">range_tree_node_t</span>&gt;(papa);</span><br><span class="line">    xtree-&gt;size = r - l;</span><br><span class="line">    xtree-&gt;l = px[l];</span><br><span class="line">    xtree-&gt;r = px[r - <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">int</span> m = <span class="number">0</span>;</span><br><span class="line">    tmpx[m++] = px[l]; <span class="comment">// unique x</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = l + <span class="number">1</span>; i &lt; r; ++i)</span><br><span class="line">        <span class="keyword">if</span> (px[i] != tmpx[m - <span class="number">1</span>])</span><br><span class="line">            tmpx[m++] = px[i];</span><br><span class="line">    xtree-&gt;mid = tmpx[(m - <span class="number">1</span>) &gt;&gt; <span class="number">1</span>]; <span class="comment">// median</span></span><br><span class="line">    <span class="keyword">if</span> (m &gt; <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">int</span> mid = l;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = l; i &lt; r; ++i)</span><br><span class="line">            <span class="keyword">if</span> (px[i] &lt;= xtree-&gt;mid)</span><br><span class="line">                mid = i;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        build_range_xtree(xtree-&gt;left, xtree, l, mid + <span class="number">1</span>);</span><br><span class="line">        build_range_xtree(xtree-&gt;right, xtree, mid + <span class="number">1</span>, r);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// merge sort on y</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = l; i &lt; r; ++i)</span><br><span class="line">            tmpy[i] = py[i];</span><br><span class="line">        m = l;</span><br><span class="line">        <span class="keyword">int</span> i1 = l, i2 = mid + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (m &lt; r) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i2 &gt;= r || i1 &lt; mid + <span class="number">1</span> &amp;&amp; tmpy[i1] &lt; tmpy[i2])</span><br><span class="line">                py[m++] = tmpy[i1++];</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                py[m++] = tmpy[i2++];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span></span><br><span class="line">        dest[l] = xtree;</span><br><span class="line">    xtree-&gt;y = <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(py.begin() + l, py.begin() + r);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">larger_than</span><span class="params">(<span class="keyword">const</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;a, <span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a.end() - upper_bound(a.begin(), a.end(), x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">smaller_than</span><span class="params">(<span class="keyword">const</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;a, <span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> lower_bound(a.begin(), a.end(), x) - a.begin();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; T;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> cs = <span class="number">1</span>; cs &lt;= T; ++cs) &#123;</span><br><span class="line">        <span class="keyword">int</span> a, b, c, d, e, f, m;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; n &gt;&gt; p[<span class="number">0</span>].x &gt;&gt; p[<span class="number">0</span>].y &gt;&gt; a &gt;&gt; b &gt;&gt; c &gt;&gt; d &gt;&gt; e &gt;&gt; f &gt;&gt; m;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            p[i].x = ((<span class="keyword">long</span> <span class="keyword">long</span>) a * p[i - <span class="number">1</span>].x + (<span class="keyword">long</span> <span class="keyword">long</span>) b * p[i - <span class="number">1</span>].y + c) % m;</span><br><span class="line">            p[i].y = ((<span class="keyword">long</span> <span class="keyword">long</span>) d * p[i - <span class="number">1</span>].x + (<span class="keyword">long</span> <span class="keyword">long</span>) e * p[i - <span class="number">1</span>].y + f) % m;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        sort(p, p + n, [](<span class="keyword">const</span> <span class="keyword">point_t</span> &amp;a, <span class="keyword">const</span> <span class="keyword">point_t</span> &amp;b) &#123;</span><br><span class="line">            <span class="keyword">return</span> a.x &lt; b.x || a.x == b.x &amp;&amp; a.y &lt; b.y;</span><br><span class="line">        &#125;);</span><br><span class="line">        px.resize(n);</span><br><span class="line">        py.resize(n);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            px[i] = p[i].x;</span><br><span class="line">            py[i] = p[i].y;</span><br><span class="line">        &#125;</span><br><span class="line">        build_range_xtree(xtree, <span class="literal">nullptr</span>, <span class="number">0</span>, n);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> ans = (<span class="keyword">long</span> <span class="keyword">long</span>) n * (n - <span class="number">1</span>) * (n - <span class="number">2</span>) / <span class="number">3</span> / <span class="number">2</span>; <span class="comment">// C(n, 3)</span></span><br><span class="line"><span class="comment">//        n2 | n1</span></span><br><span class="line"><span class="comment">//        ---+---</span></span><br><span class="line"><span class="comment">//        n3 | n4</span></span><br><span class="line">        <span class="keyword">int</span> n1, n2, n3, n4;</span><br><span class="line">        xnode.clear();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>; i &lt; n; i = j) &#123;</span><br><span class="line">            <span class="keyword">while</span> (j &lt; n &amp;&amp; p[j].x == p[i].x)</span><br><span class="line">                ++j;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> k = i; k &lt; j; ++k) &#123;</span><br><span class="line">                n2 = n3 = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">auto</span> xn : xnode) &#123;</span><br><span class="line">                    n2 += larger_than(xn-&gt;y, p[k].y);</span><br><span class="line">                    n3 += smaller_than(xn-&gt;y, p[k].y);</span><br><span class="line">                &#125;</span><br><span class="line">                n1 = larger_than(py, p[k].y) - n2 - (j - k - <span class="number">1</span>);</span><br><span class="line">                n4 = smaller_than(py, p[k].y) - n3 - (k - i);</span><br><span class="line">                ans -= (<span class="keyword">long</span> <span class="keyword">long</span>) n1 * n3 + (<span class="keyword">long</span> <span class="keyword">long</span>) n2 * n4;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            xnode.emplace_back(dest[i]);</span><br><span class="line">            <span class="keyword">while</span> (xnode.size() &gt;= <span class="number">2</span> &amp;&amp; xnode[xnode.size() - <span class="number">1</span>]-&gt;papa == xnode[xnode.size() - <span class="number">2</span>]-&gt;papa) &#123;</span><br><span class="line">                xnode[xnode.size() - <span class="number">2</span>] = xnode[xnode.size() - <span class="number">1</span>]-&gt;papa;</span><br><span class="line">                xnode.pop_back();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"Case #"</span> &lt;&lt; cs &lt;&lt; <span class="string">": "</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+      
+
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>bbappyuanyuan</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://bbappyuanyuan.github.io/posts/3177a132/" title="Kickstart Round B 2018 题解">https://bbappyuanyuan.github.io/posts/3177a132/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Kickstart/" rel="tag"># Kickstart</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/1face4da/" rel="next" title="拼图 GUI 界面 AVATAR 实现">
+                <i class="fa fa-chevron-left"></i> 拼图 GUI 界面 AVATAR 实现
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/ece178b7/" rel="prev" title="Kickstart Round C 2018 题解">
+                Kickstart Round C 2018 题解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpeg"
+                alt="bbappyuanyuan" />
+            
+              <p class="site-author-name" itemprop="name">bbappyuanyuan</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/bbappyuanyuan" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:zfyuan.sh@gmail.com" target="_blank" title="Gmail"><i class="fa fa-fw fa-google"></i>Gmail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#a-no-nine"><span class="nav-number">1.</span> <span class="nav-text"> A. No Nine</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#b-sherlock-and-the-bit-strings"><span class="nav-number">2.</span> <span class="nav-text"> B. Sherlock and the Bit Strings</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#c-kings-circle"><span class="nav-number">3.</span> <span class="nav-text"> C. King’s Circle</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 – <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">bbappyuanyuan</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=65974637";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("4UFUAbLct6dH8lDY6kRurCuP-gzGzoHsz", "rG3Q01dqfbp1rQAGsMw5gqAu");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            
+            counter.save(null, {
+              success: function(counter) {
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! See more at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see here how to solve it: https://github.com/theme-next/hexo-leancloud-counter-security. \n But you also can use LeanCloud without security, by set \'security\' option to \'false\'.');
+            
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+</body>
+</html>

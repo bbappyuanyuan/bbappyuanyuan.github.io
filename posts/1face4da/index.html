@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'BFVXQ3J46P',
+      apiKey: 'db66c5aa1629d374a7181952fd387b6a',
+      indexName: 'hexo',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="2017 年 10 月～2018 年 3 月在南洋理工大学 DMAL 实验室做 RA，参与 Graph Mining 相关项目。这个项目做的是从图／网络里提取一定数量的 pattern，让用户能够方便地构造数据集相关的 query。这个项目的目标有别于别的相关工作：  pattern 对数据集有尽可能高的覆盖率 pattern 间冗余度尽可能低  详细描述见导师发的文章 Data-driven V">
+<meta name="keywords" content="JavaScript,Sigma.js,Linkurious.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="拼图 GUI 界面 AVATAR 实现">
+<meta property="og:url" content="https://bbappyuanyuan.github.io/posts/1face4da/index.html">
+<meta property="og:site_name" content="bbappyuanyuan 的博客">
+<meta property="og:description" content="2017 年 10 月～2018 年 3 月在南洋理工大学 DMAL 实验室做 RA，参与 Graph Mining 相关项目。这个项目做的是从图／网络里提取一定数量的 pattern，让用户能够方便地构造数据集相关的 query。这个项目的目标有别于别的相关工作：  pattern 对数据集有尽可能高的覆盖率 pattern 间冗余度尽可能低  详细描述见导师发的文章 Data-driven V">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://bbappyuanyuan.github.io/posts/1face4da/demo.png">
+<meta property="og:image" content="https://bbappyuanyuan.github.io/posts/1face4da/upload-datastore.png">
+<meta property="og:image" content="https://bbappyuanyuan.github.io/posts/1face4da/load-datastore.png">
+<meta property="og:image" content="https://bbappyuanyuan.github.io/posts/1face4da/after-load-datastore.png">
+<meta property="og:image" content="https://bbappyuanyuan.github.io/posts/1face4da/generate-patterns.png">
+<meta property="og:image" content="https://bbappyuanyuan.github.io/posts/1face4da/after-generate-patterns.png">
+<meta property="og:image" content="https://bbappyuanyuan.github.io/posts/1face4da/lasso-select.png">
+<meta property="og:image" content="https://bbappyuanyuan.github.io/posts/1face4da/demo.png">
+<meta property="og:updated_time" content="2018-03-27T02:20:56.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="拼图 GUI 界面 AVATAR 实现">
+<meta name="twitter:description" content="2017 年 10 月～2018 年 3 月在南洋理工大学 DMAL 实验室做 RA，参与 Graph Mining 相关项目。这个项目做的是从图／网络里提取一定数量的 pattern，让用户能够方便地构造数据集相关的 query。这个项目的目标有别于别的相关工作：  pattern 对数据集有尽可能高的覆盖率 pattern 间冗余度尽可能低  详细描述见导师发的文章 Data-driven V">
+<meta name="twitter:image" content="https://bbappyuanyuan.github.io/posts/1face4da/demo.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="bbappyuanyuan 的博客" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="https://bbappyuanyuan.github.io/posts/1face4da/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>拼图 GUI 界面 AVATAR 实现 | bbappyuanyuan 的博客</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111501815-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-111501815-1');
+</script>
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?e9db1859ae31ed3d4c03ca64c5221ff1";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">bbappyuanyuan 的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">有些事，现在不做，以后再也不会做了</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://bbappyuanyuan.github.io/posts/1face4da/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="bbappyuanyuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="bbappyuanyuan 的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">拼图 GUI 界面 AVATAR 实现
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-03-20 10:00:00" itemprop="dateCreated datePublished" datetime="2018-03-20T10:00:00+08:00">2018-03-20</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-03-27 10:20:56" itemprop="dateModified" datetime="2018-03-27T10:20:56+08:00">2018-03-27</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Web-前端/" itemprop="url" rel="index"><span itemprop="name">Web 前端</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/posts/1face4da/" class="leancloud_visitors" data-flag-title="拼图 GUI 界面 AVATAR 实现">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>2017 年 10 月～2018 年 3 月在南洋理工大学 DMAL 实验室做 RA，参与 Graph Mining 相关项目。这个项目做的是从图／网络里提取一定数量的 pattern，让用户能够方便地构造数据集相关的 query。这个项目的目标有别于别的相关工作：</p>
+<ol>
+<li>pattern 对数据集有尽可能高的覆盖率</li>
+<li>pattern 间冗余度尽可能低</li>
+</ol>
+<p>详细描述见导师发的文章 <a href="http://www.vldb.org/pvldb/vol9/p984-bhowmick.pdf" target="_blank" rel="noopener">Data-driven Visual Graph Query Interface Construction and Maintenance: Challenges and Opportunities</a>。</p>
+<p>到目前为止我已经实现了 pattern 提取的整个过程，接下来要做一些列实验和写论文。无论是实验或作品展示，都需要用户能够操作的 GUI 界面。但是实验室没有啊，怎么办？（其实实验室是有个用 Java Swing 做的半成品，Java 6 年代做的，研究了半天决定放弃）于是做数据挖掘的我又做起了熟悉的前端，前前后后花一个月做了出来。这篇文章介绍用 pattern 拼图的 GUI 界面实现（老板指定名字为 <code>AVATAR</code>，忘了问缘由）。至于 pattern 提取算法，等文章发出来再做介绍吧。</p>
+<img src="/posts/1face4da/demo.png">
+<a id="more"></a>
+<h2 id="技术和框架"><a class="markdownIt-Anchor" href="#技术和框架"></a> 技术和框架</h2>
+<ul>
+<li>作图库采用 <a href="https://github.com/Linkurious/linkurious.js" target="_blank" rel="noopener">Linkurious.js</a>，它基于 <a href="https://github.com/jacomyal/sigma.js/" target="_blank" rel="noopener">Sigma.js</a>，所以变量名保持为 <code>sigma</code>，尽管已经 deprecated，但它能正常使用而且提供 Sigma.js 没有的实用功能</li>
+<li>前端使用了 jQuery，jQuery UI，Font Awesome，Bootstrap v4 等扩展（才发现 Bootstrap v4 正式发布了，从官网学习了新特征，比 v3 用得方便）</li>
+<li>软件主要是前端的工作，后端比较简单，所以想试试用 Node.js 写后端，使用 <code>Express</code> 框架</li>
+</ul>
+<h2 id="功能和实现"><a class="markdownIt-Anchor" href="#功能和实现"></a> 功能和实现</h2>
+<h3 id="上传-加载数据集"><a class="markdownIt-Anchor" href="#上传-加载数据集"></a> 上传、加载数据集</h3>
+<p>用户可以在 <code>Upload datastore</code> 窗口上传固定格式的数据集，让后台生成 pattern。数据集上传后，后台会异步地调用算法程序（C++ 编码）处理数据集，生成 pattern 等信息，通过文件输出等形式让前端跟踪进度。</p>
+<img src="/posts/1face4da/upload-datastore.png">
+<p>用户可以在 <code>Load datastore</code> 窗口看到现有数据集和正在处理的数据集和处理的进度，可以加载现有的一个数据集。</p>
+<img src="/posts/1face4da/load-datastore.png">
+<p>我使用 <code>child_process.spwan</code> 接口进行异步调用。上传文件我使用了 <code>connect-busboy</code> 包，实现了以流的方式上传文件。网上的其他上传文件方式（比如 <code>express-fileupload</code> 包）我都尝试过，那些方法不但速度比不上 busboy，而且无法上传 1 GB 左右的大文件（后端会出错，具体消息忘了，大概意思是 memory 不足）。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">req.busboy.on(<span class="string">'file'</span>, (fieldname, file, filename) =&gt; &#123;</span><br><span class="line">    <span class="keyword">let</span> fstream = fs.createWriteStream(<span class="string">`<span class="subst">$&#123;__dirname&#125;</span>/data/<span class="subst">$&#123;name&#125;</span>/graph`</span>)</span><br><span class="line">    file.pipe(fstream)</span><br><span class="line">    fstream.on(<span class="string">'close'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">let</span> davinci = spawn(<span class="string">'./Davinci'</span>, [name, <span class="string">'-step1'</span>])</span><br><span class="line">        davinci.on(<span class="string">'close'</span>, (code) =&gt; &#123;</span><br><span class="line">            utilities.appendLog(<span class="string">`<span class="subst">$&#123;__dirname&#125;</span>/data/<span class="subst">$&#123;name&#125;</span>/graph_log`</span>, <span class="string">`child process exited with code <span class="subst">$&#123;code&#125;</span>`</span>)</span><br><span class="line">            <span class="keyword">if</span> (<span class="number">0</span> != code)</span><br><span class="line">                fs.writeFile(<span class="string">`<span class="subst">$&#123;__dirname&#125;</span>/data/<span class="subst">$&#123;name&#125;</span>/error`</span>, <span class="string">'Runtime error'</span>)</span><br><span class="line">        &#125;);</span><br><span class="line">        res.json(&#123; <span class="attr">success</span>: <span class="literal">true</span> &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>程序运行完会生成 <code>GraphInfo.json</code>，<code>labels.json</code>，<code>limits.json</code>，<code>patterns.json</code> 等文件，描述了前端所需要的信息。加载数据集后页面会显示数据集概况和标签。</p>
+<img src="/posts/1face4da/after-load-datastore.png">
+<h3 id="生成和展示-pattern"><a class="markdownIt-Anchor" href="#生成和展示-pattern"></a> 生成和展示 pattern</h3>
+<p>加载数据集时候 pattern 已经有了，这一步用户在 <code>Generate patterns</code> 窗口指定数量和边数。</p>
+<img src="/posts/1face4da/generate-patterns.png">
+<p>调用选择 pattern 的程序，这一步需要对 pattern 进行冗余选取，多次调用 boost 的图形库函数，尽管使用了多线程，速度也不是特别快，一分钟左右。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">app.get(<span class="string">'/datastores/:name/patterns'</span>, (req, res) =&gt; &#123;</span><br><span class="line">    <span class="keyword">let</span> name = req.params[<span class="string">'name'</span>]</span><br><span class="line">    <span class="keyword">let</span> num = req.query[<span class="string">'num'</span>]</span><br><span class="line">    <span class="keyword">let</span> minSize = req.query[<span class="string">'minSize'</span>]</span><br><span class="line">    <span class="keyword">let</span> maxSize = req.query[<span class="string">'maxSize'</span>]</span><br><span class="line">    <span class="keyword">let</span> davinci = spawn(<span class="string">'./Davinci'</span>, [name, <span class="string">'-step2'</span>, num, minSize, maxSize])</span><br><span class="line">    davinci.on(<span class="string">'close'</span>, (code) =&gt; &#123;</span><br><span class="line">        <span class="keyword">let</span> content = fs.readFileSync(<span class="string">`<span class="subst">$&#123;__dirname&#125;</span>/data/<span class="subst">$&#123;name&#125;</span>/patterns<span class="subst">$&#123;num&#125;</span>-<span class="subst">$&#123;minSize&#125;</span>-<span class="subst">$&#123;maxSize&#125;</span>.json`</span>, <span class="string">'utf8'</span>)</span><br><span class="line">        res.json(<span class="built_in">JSON</span>.parse(content))</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>图的分布是 NP 问题，界面的目标是尽可能清晰地展示 pattern 供用户使用，由于时间关系我不能花大量时间在图显示布局方面，对比现成的常用布局算法，我选用了 <code>ForceAtlas2</code>，Linkurious.js 提供这个<a href="https://github.com/Linkurious/linkurious.js/tree/develop/plugins/sigma.layouts.forceAtlas2" target="_blank" rel="noopener">布局插件</a>。布局算法过后，我会适当旋转和拉伸点使得 pattern 尽可能地占满显示窗口。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  * Draw generated pattern in drawing board</span></span><br><span class="line"><span class="comment">  * </span></span><br><span class="line"><span class="comment">  * @param   &#123;Sigma&#125;     s</span></span><br><span class="line"><span class="comment">  * @param   &#123;object&#125;    pattern</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">drawGeneratedPattern</span>(<span class="params">s, pattern</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> gap = PATTERN_NODE_SIZE * <span class="number">5</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; pattern.n; ++i)</span><br><span class="line">        addNode(s, <span class="built_in">Math</span>.random() * gap * <span class="number">2</span> - gap, i * gap, <span class="literal">true</span>);</span><br><span class="line">    pattern.e.forEach(<span class="function"><span class="params">pair</span> =&gt;</span> addEdge(s, pair[<span class="number">0</span>], pair[<span class="number">1</span>]));</span><br><span class="line">    <span class="comment">// sigma.layouts.startForceLink(s, &#123;&#125;); // ForceLink has to be performed one by one</span></span><br><span class="line">    s.startForceAtlas2(&#123;&#125;); <span class="comment">// ForceAtlas2 is able to be performed simultaneously</span></span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">// sigma.layouts.stopForceLink();</span></span><br><span class="line">        <span class="comment">// sigma.layouts.killForceLink(); // must kill it!!!!</span></span><br><span class="line">        s.stopForceAtlas2(FORCE_ATLAS2_SETTINGS);</span><br><span class="line">        s.configNoverlap(&#123;&#125;);</span><br><span class="line">        s.startNoverlap();</span><br><span class="line">        setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">            rotateTofitContainer(s);</span><br><span class="line">            scaleTofitContainer(s);</span><br><span class="line">        &#125;, LAYOUT_RUN_TIME);</span><br><span class="line">    &#125;, LAYOUT_RUN_TIME);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<img src="/posts/1face4da/after-generate-patterns.png">
+<h3 id="添删点-边"><a class="markdownIt-Anchor" href="#添删点-边"></a> 添删点、边</h3>
+<p>点击左键添加点和边，点击右键删除点或边。通过监听鼠标事件实现。</p>
+<p>此外，右键是删除功能，需要屏蔽浏览器默认的右键菜单：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ***************************** remove node *****************************</span></span><br><span class="line">$(<span class="string">'#board'</span>).parent().on(<span class="string">'contextmenu'</span>, (e) =&gt; &#123; <span class="comment">// disable right click menu on board</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'board contextmenu'</span>, e);</span><br><span class="line">    e.preventDefault();</span><br><span class="line">&#125;, <span class="literal">false</span>);</span><br><span class="line">s.renderers[<span class="number">0</span>].bind(<span class="string">'rightClickNode'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'rightClickNode'</span>, e);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'remove node '</span> + e.data.node.id);</span><br><span class="line">    <span class="keyword">if</span> (inActiveState(s, e.data.node.id)) &#123;</span><br><span class="line">        s.activeState.nodes().forEach(<span class="function"><span class="params">n</span> =&gt;</span> s.graph.dropNode(n.id));</span><br><span class="line">    &#125; <span class="keyword">else</span></span><br><span class="line">        s.graph.dropNode(e.data.node.id);</span><br><span class="line">    s.refresh();</span><br><span class="line">    <span class="comment">// fix bug: node remains after right click if mouse stays</span></span><br><span class="line">    $(<span class="string">'#board .sigma-mouse'</span>).hide();</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123; $(<span class="string">'#board .sigma-mouse'</span>).show(); &#125;, <span class="number">50</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="选择-拖动图形"><a class="markdownIt-Anchor" href="#选择-拖动图形"></a> 选择、拖动图形</h3>
+<p>组合使用了 Linkurious.js 的 <code>select</code>，<code>activeState</code>，<code>dragNodes</code> 插件实现基础功能。其中，同时拖动多个点的时候点的位置经常不准确（估计是插件的 bug），我只好重新计算点的坐标。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">s.dragListener.bind(<span class="string">'startdrag'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'dragNodes startdrag'</span>, e);</span><br><span class="line">    draggingNodes = &#123;&#125;;</span><br><span class="line">    draggingNodes[e.data.node.id] = [e.data.node.x, e.data.node.y];</span><br><span class="line">    <span class="keyword">if</span> (<span class="number">1</span> == s.activeState.nbNodes()) &#123;</span><br><span class="line">        beforeDragNodeId = s.activeState.nodes()[<span class="number">0</span>].id;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        beforeDragNodeId = <span class="literal">undefined</span>;</span><br><span class="line">        <span class="keyword">if</span> (inActiveState(s, e.data.node.id) &amp;&amp; s.activeState.nbNodes() &gt; <span class="number">1</span>) &#123; <span class="comment">// fix bug of draging multiple nodes</span></span><br><span class="line">            draggingNodes = &#123;&#125;;</span><br><span class="line">            dragDx = [];</span><br><span class="line">            dragDy = [];</span><br><span class="line">            s.activeState.nodes().forEach(<span class="function"><span class="params">n</span> =&gt;</span> &#123;</span><br><span class="line">                draggingNodes[n.id] = [n.x, n.y];</span><br><span class="line">                dragDx.push(n.x - e.data.node.x);</span><br><span class="line">                dragDy.push(n.y - e.data.node.y);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><code>lasso</code> 插件提供了强大的多选工具：</p>
+<img src="/posts/1face4da/lasso-select.png">
+<h3 id="添删标签label"><a class="markdownIt-Anchor" href="#添删标签label"></a> 添删标签（label）</h3>
+<p>标签分组显示，用户选定点后，双击标签给点添加或更改标签；如果想取消标签，选中点后，点击 <code>Detach label</code> 按钮。</p>
+<h3 id="添加-pattern"><a class="markdownIt-Anchor" href="#添加-pattern"></a> 添加 pattern</h3>
+<p>用户可以通过拖动把 pattern 添加到主画板，我使用 <a href="http://jqueryui.com/draggable/" target="_blank" rel="noopener">jQuery UI Draggable</a> 实现拖动功能。自带的 <code>clone</code> 功能不能拷贝 <code>&lt;canvas&gt;</code>，所以我自己实现了拷贝 <code>&lt;canvas&gt;</code> 的功能，定义为插件的 <code>helper</code> 函数参数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  * Allow users to drag a pattern into drawing board</span></span><br><span class="line"><span class="comment">  * Use jQuery Draggable plugin</span></span><br><span class="line"><span class="comment">  * </span></span><br><span class="line"><span class="comment">  * @param   &#123;string&#125;    sourceClass Pattern type ('sigma-default-pattern-container' or 'sigma-generated-pattern-container')</span></span><br><span class="line"><span class="comment">  * @param   &#123;Sigma&#125;     s   Target drawing board</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">enableDrag</span>(<span class="params">sourceClass, s</span>) </span>&#123;</span><br><span class="line">    $.each($(<span class="string">'.'</span> + sourceClass), (_, c) =&gt; &#123;</span><br><span class="line">        $(c).draggable(&#123;</span><br><span class="line">            <span class="comment">// deep clone canvas</span></span><br><span class="line">            <span class="comment">// it costs much time! QAQ</span></span><br><span class="line">            helper: <span class="function"><span class="params">e</span> =&gt;</span> &#123;</span><br><span class="line">                <span class="keyword">let</span> clone = $(e.currentTarget).clone();</span><br><span class="line">                clone.children(<span class="string">'canvas.sigma-scene'</span>)[<span class="number">0</span>].getContext(<span class="string">'2d'</span>).drawImage($(e.currentTarget).children(<span class="string">'canvas.sigma-scene'</span>)[<span class="number">0</span>], <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">                <span class="keyword">return</span> clone;</span><br><span class="line">            &#125;,</span><br><span class="line">            appendTo: <span class="string">'div.container-fluid'</span>,</span><br><span class="line">            scroll: <span class="literal">false</span>,</span><br><span class="line">            cursor: <span class="string">'move'</span>,</span><br><span class="line">            opacity: <span class="number">0.7</span>,</span><br><span class="line">            cursorAt: &#123; <span class="comment">// cursor at center</span></span><br><span class="line">                left: c.offsetWidth / <span class="number">2</span>,</span><br><span class="line">                top: c.offsetHeight / <span class="number">2</span></span><br><span class="line">            &#125;,</span><br><span class="line">            start: <span class="function"><span class="params">e</span> =&gt;</span> &#123;</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'dragstart'</span>, e);</span><br><span class="line">            &#125;,</span><br><span class="line">            stop: <span class="function"><span class="params">e</span> =&gt;</span> &#123;</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'dragstop'</span>, e);</span><br><span class="line">                <span class="keyword">let</span> rx = e.pageX - $(s.renderers[<span class="number">0</span>].container).offset().left;</span><br><span class="line">                <span class="keyword">let</span> ry = e.pageY - $(s.renderers[<span class="number">0</span>].container).offset().top;</span><br><span class="line">                <span class="keyword">if</span> (rx - c.offsetWidth / <span class="number">2</span> &gt; <span class="number">0</span> &amp;&amp; rx + c.offsetWidth / <span class="number">2</span> &lt; s.renderers[<span class="number">0</span>].container.offsetWidth</span><br><span class="line">                    &amp;&amp; ry - c.offsetHeight / <span class="number">2</span> &gt; <span class="number">0</span> &amp;&amp; ry + c.offsetHeight / <span class="number">2</span> &lt; s.renderers[<span class="number">0</span>].container.offsetHeight) &#123;</span><br><span class="line">                    <span class="built_in">console</span>.log(<span class="string">'add pattern'</span>);</span><br><span class="line">                    <span class="keyword">let</span> x = rx - s.sigmaMouse.offsetWidth / <span class="number">2</span>;</span><br><span class="line">                    <span class="keyword">let</span> y = ry - s.sigmaMouse.offsetHeight / <span class="number">2</span>;</span><br><span class="line">                    <span class="keyword">let</span> p = s.camera.cameraPosition(x, y);</span><br><span class="line">                    <span class="keyword">switch</span> (e.target.id) &#123;</span><br><span class="line">                        <span class="keyword">case</span> <span class="string">'customized-hub-default-pattern'</span>:</span><br><span class="line">                            addPatternCenter = &#123; <span class="attr">x</span>: p.x, <span class="attr">y</span>: p.y &#125;;</span><br><span class="line">                            $(<span class="string">'#customized-hub-modal'</span>).modal(<span class="string">'show'</span>);</span><br><span class="line">                            <span class="keyword">break</span>;</span><br><span class="line">                        <span class="keyword">case</span> <span class="string">'customized-ring-default-pattern'</span>:</span><br><span class="line">                            addPatternCenter = &#123; <span class="attr">x</span>: p.x, <span class="attr">y</span>: p.y &#125;;</span><br><span class="line">                            $(<span class="string">'#customized-ring-modal'</span>).modal(<span class="string">'show'</span>);</span><br><span class="line">                            <span class="keyword">break</span>;</span><br><span class="line">                        <span class="keyword">default</span>:</span><br><span class="line">                            addPattern(s, $(e.target).data(<span class="string">'sigmaObject'</span>), p.x, p.y);</span><br><span class="line">                            scaleTillClear(s, s.activeState.nodes()); <span class="comment">// avoid node clique</span></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<img src="/posts/1face4da/demo.png">
+<h2 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h2>
+<ol>
+<li>Install <a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node.js</a></li>
+<li>Install Node.js packages via command <code>npm install</code></li>
+<li>Start server via command <code>node app.js</code></li>
+<li>Access web via <code>http://localhost:3000</code> or <code>http://&lt;your_server_ip&gt;:3000</code></li>
+</ol>
+
+      
+    </div>
+
+    
+      
+
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>bbappyuanyuan</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://bbappyuanyuan.github.io/posts/1face4da/" title="拼图 GUI 界面 AVATAR 实现">https://bbappyuanyuan.github.io/posts/1face4da/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/Sigma-js/" rel="tag"># Sigma.js</a>
+          
+            <a href="/tags/Linkurious-js/" rel="tag"># Linkurious.js</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/acf8e3a0/" rel="next" title="基于 DWR + ActiveMQ 的 Web 端订阅消息推送">
+                <i class="fa fa-chevron-left"></i> 基于 DWR + ActiveMQ 的 Web 端订阅消息推送
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/3177a132/" rel="prev" title="Kickstart Round B 2018 题解">
+                Kickstart Round B 2018 题解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpeg"
+                alt="bbappyuanyuan" />
+            
+              <p class="site-author-name" itemprop="name">bbappyuanyuan</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/bbappyuanyuan" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:zfyuan.sh@gmail.com" target="_blank" title="Gmail"><i class="fa fa-fw fa-google"></i>Gmail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#技术和框架"><span class="nav-number">1.</span> <span class="nav-text"> 技术和框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#功能和实现"><span class="nav-number">2.</span> <span class="nav-text"> 功能和实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#上传-加载数据集"><span class="nav-number">2.1.</span> <span class="nav-text"> 上传、加载数据集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成和展示-pattern"><span class="nav-number">2.2.</span> <span class="nav-text"> 生成和展示 pattern</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添删点-边"><span class="nav-number">2.3.</span> <span class="nav-text"> 添删点、边</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选择-拖动图形"><span class="nav-number">2.4.</span> <span class="nav-text"> 选择、拖动图形</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添删标签label"><span class="nav-number">2.5.</span> <span class="nav-text"> 添删标签（label）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加-pattern"><span class="nav-number">2.6.</span> <span class="nav-text"> 添加 pattern</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">3.</span> <span class="nav-text"> 安装</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 – <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">bbappyuanyuan</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=65974637";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("4UFUAbLct6dH8lDY6kRurCuP-gzGzoHsz", "rG3Q01dqfbp1rQAGsMw5gqAu");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            
+            counter.save(null, {
+              success: function(counter) {
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! See more at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see here how to solve it: https://github.com/theme-next/hexo-leancloud-counter-security. \n But you also can use LeanCloud without security, by set \'security\' option to \'false\'.');
+            
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+</body>
+</html>
