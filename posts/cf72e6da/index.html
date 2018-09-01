@@ -111,14 +111,14 @@
   <meta name="description" content="前言 2019 年暑假在「Face++」云平台部门实习，从事基于分布式系统的研发，组内推荐完成 6.824，我也觉得很有必要系统地巩固这方面知识，便计划两个月内完成这门课。 由于课程开头说明了 Please do not publish your code or make it available to current or future 6.824 students.，在文章里我不会贴代码，只">
 <meta name="keywords" content="6.824,Go">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MIT 6.824 - Spring 2018 Lab 1">
-<meta property="og:url" content="https://bbappyuanyuan.github.io/posts/7dbd9e79/index.html">
+<meta property="og:title" content="MIT 6.824 Spring 2018 Lab 1 实验总结">
+<meta property="og:url" content="https://bbappyuanyuan.github.io/posts/cf72e6da/index.html">
 <meta property="og:site_name" content="bbappyuanyuan 的博客">
 <meta property="og:description" content="前言 2019 年暑假在「Face++」云平台部门实习，从事基于分布式系统的研发，组内推荐完成 6.824，我也觉得很有必要系统地巩固这方面知识，便计划两个月内完成这门课。 由于课程开头说明了 Please do not publish your code or make it available to current or future 6.824 students.，在文章里我不会贴代码，只">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-09-01T16:31:47.690Z">
+<meta property="og:updated_time" content="2018-09-01T16:40:47.155Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MIT 6.824 - Spring 2018 Lab 1">
+<meta name="twitter:title" content="MIT 6.824 Spring 2018 Lab 1 实验总结">
 <meta name="twitter:description" content="前言 2019 年暑假在「Face++」云平台部门实习，从事基于分布式系统的研发，组内推荐完成 6.824，我也觉得很有必要系统地巩固这方面知识，便计划两个月内完成这门课。 由于课程开头说明了 Please do not publish your code or make it available to current or future 6.824 students.，在文章里我不会贴代码，只">
 
 
@@ -128,7 +128,7 @@
 
 
 
-  <link rel="canonical" href="https://bbappyuanyuan.github.io/posts/7dbd9e79/"/>
+  <link rel="canonical" href="https://bbappyuanyuan.github.io/posts/cf72e6da/"/>
 
 
 
@@ -138,7 +138,7 @@
   };
 </script>
 
-  <title>MIT 6.824 - Spring 2018 Lab 1 | bbappyuanyuan 的博客</title>
+  <title>MIT 6.824 Spring 2018 Lab 1 实验总结 | bbappyuanyuan 的博客</title>
   
 
 
@@ -357,7 +357,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://bbappyuanyuan.github.io/posts/7dbd9e79/">
+    <link itemprop="mainEntityOfPage" href="https://bbappyuanyuan.github.io/posts/cf72e6da/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="bbappyuanyuan">
@@ -374,7 +374,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">MIT 6.824 - Spring 2018 Lab 1
+          <h1 class="post-title" itemprop="name headline">MIT 6.824 Spring 2018 Lab 1 实验总结
               
             
           </h1>
@@ -416,7 +416,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-09-02 00:31:47" itemprop="dateModified" datetime="2018-09-02T00:31:47+08:00">2018-09-02</time>
+                <time title="修改时间：2018-09-02 00:40:47" itemprop="dateModified" datetime="2018-09-02T00:40:47+08:00">2018-09-02</time>
               
             
           </span>
@@ -447,7 +447,7 @@
 
           
           
-             <span id="/posts/7dbd9e79/" class="leancloud_visitors" data-flag-title="MIT 6.824 - Spring 2018 Lab 1">
+             <span id="/posts/cf72e6da/" class="leancloud_visitors" data-flag-title="MIT 6.824 Spring 2018 Lab 1 实验总结">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -482,7 +482,7 @@
 <p>2019 年暑假在「Face++」云平台部门实习，从事基于分布式系统的研发，组内推荐完成 6.824，我也觉得很有必要系统地巩固这方面知识，便计划两个月内完成这门课。<br>
 由于课程开头说明了 <code>Please do not publish your code or make it available to current or future 6.824 students.</code>，在文章里我不会贴代码，只记录我实现的方法和遇到的坑，如果对实验有什么疑问，欢迎一起讨论。</p>
 <a id="more"></a>
-<h1 id="mit-6824-spring-2018-lab-1-mapreduce"><a class="markdownIt-Anchor" href="#mit-6824-spring-2018-lab-1-mapreduce"></a> MIT 6.824 - Spring 2018 Lab 1: MapReduce</h1>
+<h1 id="6824-spring-2018-lab-1-mapreduce"><a class="markdownIt-Anchor" href="#6824-spring-2018-lab-1-mapreduce"></a> 6.824 - Spring 2018 Lab 1: MapReduce</h1>
 <h2 id="part-i-mapreduce-input-and-output"><a class="markdownIt-Anchor" href="#part-i-mapreduce-input-and-output"></a> Part I: Map/Reduce input and output</h2>
 <p>doMap 函数先创建 nReduce 个文件，mapF 函数算出所有 kv，把内容 json 编码放入相应文件。<br>
 doReduce 函数从每个 doMap 输出给目前 reduceTask 的文件 json 解码读出来，维护一个 <code>map[string][]string</code> 结构保存每个 key 对于的 values，json 编码输出到 outFile。<br>
@@ -527,7 +527,7 @@ doReduce 函数从每个 doMap 输出给目前 reduceTask 的文件 json 解码�
     <strong>本文作者： </strong>bbappyuanyuan</li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://bbappyuanyuan.github.io/posts/7dbd9e79/" title="MIT 6.824 - Spring 2018 Lab 1">https://bbappyuanyuan.github.io/posts/7dbd9e79/</a>
+    <a href="https://bbappyuanyuan.github.io/posts/cf72e6da/" title="MIT 6.824 Spring 2018 Lab 1 实验总结">https://bbappyuanyuan.github.io/posts/cf72e6da/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
@@ -555,8 +555,8 @@ doReduce 函数从每个 doMap 输出给目前 reduceTask 的文件 json 解码�
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/posts/3177a132/" rel="next" title="Code Jam Kickstart Round B 2018 题解">
-                <i class="fa fa-chevron-left"></i> Code Jam Kickstart Round B 2018 题解
+              <a href="/posts/ece178b7/" rel="next" title="Code Jam Kickstart Round C 2018 题解">
+                <i class="fa fa-chevron-left"></i> Code Jam Kickstart Round C 2018 题解
               </a>
             
           </div>
@@ -757,7 +757,7 @@ doReduce 函数从每个 doMap 输出给目前 reduceTask 的文件 json 解码�
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-text"> 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mit-6824-spring-2018-lab-1-mapreduce"><span class="nav-text"> MIT 6.824 - Spring 2018 Lab 1: MapReduce</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#part-i-mapreduce-input-and-output"><span class="nav-text"> Part I: Map/Reduce input and output</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#part-ii-single-worker-word-count"><span class="nav-text"> Part II: Single-worker word count</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#part-iii-distributing-mapreduce-tasks"><span class="nav-text"> Part III: Distributing MapReduce tasks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#part-iv-handling-worker-failures"><span class="nav-text"> Part IV: Handling worker failures</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#part-v-inverted-index-generation-optional"><span class="nav-text"> Part V: Inverted index generation (optional)</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-text"> 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6824-spring-2018-lab-1-mapreduce"><span class="nav-text"> 6.824 - Spring 2018 Lab 1: MapReduce</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#part-i-mapreduce-input-and-output"><span class="nav-text"> Part I: Map/Reduce input and output</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#part-ii-single-worker-word-count"><span class="nav-text"> Part II: Single-worker word count</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#part-iii-distributing-mapreduce-tasks"><span class="nav-text"> Part III: Distributing MapReduce tasks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#part-iv-handling-worker-failures"><span class="nav-text"> Part IV: Handling worker failures</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#part-v-inverted-index-generation-optional"><span class="nav-text"> Part V: Inverted index generation (optional)</span></a></li></ol></li></ol></div>
             
 
           </div>
