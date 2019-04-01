@@ -96,18 +96,18 @@
 
 
 
-  <meta name="description" content="前言 2019 年暑假在「Face++」云平台部门实习，从事基于分布式系统的研发，组内推荐完成 6.824，我也觉得很有必要系统地巩固这方面知识，便计划两个月内完成这门课。 由于课程开头说明了 Please do not publish your code or make it available to current or future 6.824 students.，在文章里我不会贴代码，只">
-<meta name="keywords" content="6.824,Go">
+  <meta name="description" content="在 基于 DWR + ActiveMQ 的 Web 端订阅消息推送 里我实现了 Web 端订阅消息推送，然而，实际测试的时候发现速度不够，而且还不稳定，于是决定抛弃 DWR 和 ActiveMQ，使用 Socket.IO（封装了 WebSocket）做前端推送，自己写逻辑实现订阅逻辑。在前端使用 Socket.IO 提供的 JavaScript 客户端，在后端把 netty-socketio 整合">
+<meta name="keywords" content="WebSocket">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MIT 6.824 Spring 2018 Lab 1 实验总结">
-<meta property="og:url" content="https://bbappyuanyuan.github.io/posts/cf72e6da/index.html">
+<meta property="og:title" content="基于 WebSocket 的 Web 端订阅消息推送">
+<meta property="og:url" content="https://bbappyuanyuan.github.io/posts/f58fa22/index.html">
 <meta property="og:site_name" content="bbappyuanyuan 的博客">
-<meta property="og:description" content="前言 2019 年暑假在「Face++」云平台部门实习，从事基于分布式系统的研发，组内推荐完成 6.824，我也觉得很有必要系统地巩固这方面知识，便计划两个月内完成这门课。 由于课程开头说明了 Please do not publish your code or make it available to current or future 6.824 students.，在文章里我不会贴代码，只">
+<meta property="og:description" content="在 基于 DWR + ActiveMQ 的 Web 端订阅消息推送 里我实现了 Web 端订阅消息推送，然而，实际测试的时候发现速度不够，而且还不稳定，于是决定抛弃 DWR 和 ActiveMQ，使用 Socket.IO（封装了 WebSocket）做前端推送，自己写逻辑实现订阅逻辑。在前端使用 Socket.IO 提供的 JavaScript 客户端，在后端把 netty-socketio 整合">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-09-01T16:45:22.633Z">
+<meta property="og:updated_time" content="2019-04-01T07:00:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MIT 6.824 Spring 2018 Lab 1 实验总结">
-<meta name="twitter:description" content="前言 2019 年暑假在「Face++」云平台部门实习，从事基于分布式系统的研发，组内推荐完成 6.824，我也觉得很有必要系统地巩固这方面知识，便计划两个月内完成这门课。 由于课程开头说明了 Please do not publish your code or make it available to current or future 6.824 students.，在文章里我不会贴代码，只">
+<meta name="twitter:title" content="基于 WebSocket 的 Web 端订阅消息推送">
+<meta name="twitter:description" content="在 基于 DWR + ActiveMQ 的 Web 端订阅消息推送 里我实现了 Web 端订阅消息推送，然而，实际测试的时候发现速度不够，而且还不稳定，于是决定抛弃 DWR 和 ActiveMQ，使用 Socket.IO（封装了 WebSocket）做前端推送，自己写逻辑实现订阅逻辑。在前端使用 Socket.IO 提供的 JavaScript 客户端，在后端把 netty-socketio 整合">
 
 
 
@@ -117,7 +117,7 @@
 
   
   
-  <link rel="canonical" href="https://bbappyuanyuan.github.io/posts/cf72e6da/">
+  <link rel="canonical" href="https://bbappyuanyuan.github.io/posts/f58fa22/">
 
 
 
@@ -127,7 +127,7 @@
   };
 </script>
 
-  <title>MIT 6.824 Spring 2018 Lab 1 实验总结 | bbappyuanyuan 的博客</title>
+  <title>基于 WebSocket 的 Web 端订阅消息推送 | bbappyuanyuan 的博客</title>
   
 
 
@@ -386,7 +386,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://bbappyuanyuan.github.io/posts/cf72e6da/">
+    <link itemprop="mainEntityOfPage" href="https://bbappyuanyuan.github.io/posts/f58fa22/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="bbappyuanyuan">
@@ -403,7 +403,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">MIT 6.824 Spring 2018 Lab 1 实验总结
+          <h1 class="post-title" itemprop="name headline">基于 WebSocket 的 Web 端订阅消息推送
 
               
             
@@ -429,25 +429,9 @@
                 
               
 
-              <time title="创建时间：2018-08-26 14:02:00" itemprop="dateCreated datePublished" datetime="2018-08-26T14:02:00+08:00">2018-08-26</time>
+              <time title="创建时间：2019-04-01 15:00:00" itemprop="dateCreated datePublished" datetime="2019-04-01T15:00:00+08:00">2019-04-01</time>
             
 
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-09-02 00:45:22" itemprop="dateModified" datetime="2018-09-02T00:45:22+08:00">2018-09-02</time>
-              
             
           </span>
 
@@ -463,7 +447,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/分布式系统/" itemprop="url" rel="index"><span itemprop="name">分布式系统</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java-Web/" itemprop="url" rel="index"><span itemprop="name">Java Web</span></a></span>
 
                 
                 
@@ -478,7 +462,7 @@
 
           
           
-            <span id="/posts/cf72e6da/" class="leancloud_visitors" data-flag-title="MIT 6.824 Spring 2018 Lab 1 实验总结">
+            <span id="/posts/f58fa22/" class="leancloud_visitors" data-flag-title="基于 WebSocket 的 Web 端订阅消息推送">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -509,30 +493,15 @@
       
 
       
-        <h1 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> 前言</h1>
-<p>2019 年暑假在「Face++」云平台部门实习，从事基于分布式系统的研发，组内推荐完成 6.824，我也觉得很有必要系统地巩固这方面知识，便计划两个月内完成这门课。<br>
-由于课程开头说明了 <code>Please do not publish your code or make it available to current or future 6.824 students.</code>，在文章里我不会贴代码，只记录我实现的方法和遇到的坑，如果对实验有什么疑问，欢迎一起讨论。</p>
+        <p>在 <a href="/posts/acf8e3a0/">基于 DWR + ActiveMQ 的 Web 端订阅消息推送</a> 里我实现了 Web 端订阅消息推送，然而，实际测试的时候发现速度不够，而且还不稳定，于是决定抛弃 <code>DWR</code> 和 <code>ActiveMQ</code>，使用 <a href="https://socket.io/" target="_blank" rel="noopener"><code>Socket.IO</code></a>（封装了 <code>WebSocket</code>）做前端推送，自己写逻辑实现订阅逻辑。在前端使用 <a href="http://Socket.IO" target="_blank" rel="noopener">Socket.IO</a> 提供的 JavaScript 客户端，在后端把 <a href="https://github.com/mrniko/netty-socketio" target="_blank" rel="noopener">netty-socketio</a> 整合进基于 Spring + SpringMVC 的 Java Web 后台，作为 <a href="http://Socket.IO" target="_blank" rel="noopener">Socket.IO</a> 服务端。</p>
 <a id="more"></a>
-<h1 id="6824-spring-2018-lab-1-mapreduce"><a class="markdownIt-Anchor" href="#6824-spring-2018-lab-1-mapreduce"></a> 6.824 - Spring 2018 Lab 1: MapReduce</h1>
-<h2 id="part-i-mapreduce-input-and-output"><a class="markdownIt-Anchor" href="#part-i-mapreduce-input-and-output"></a> Part I: Map/Reduce input and output</h2>
-<p>doMap 函数先创建 nReduce 个文件，mapF 函数算出所有 kv，把内容 json 编码放入相应文件。<br>
-doReduce 函数从每个 doMap 输出给目前 reduceTask 的文件 json 解码读出来，维护一个 <code>map[string][]string</code> 结构保存每个 key 对于的 values，json 编码输出到 outFile。<br>
-⚠️ 注意 json 编码相关的两个函数 Encode 和 Decode 接受的是指针。</p>
-<h2 id="part-ii-single-worker-word-count"><a class="markdownIt-Anchor" href="#part-ii-single-worker-word-count"></a> Part II: Single-worker word count</h2>
-<p>可以对文章的每个词分别返回 <code>&lt;word, 1&gt;</code>，也可以用一个 <code>map[string]int</code> 记录每个词出现次数再返回。</p>
-<h2 id="part-iii-distributing-mapreduce-tasks"><a class="markdownIt-Anchor" href="#part-iii-distributing-mapreduce-tasks"></a> Part III: Distributing MapReduce tasks</h2>
-<p>我用了 Go 语言的 <code>channel</code> 和 <code>sync.WaitGroup</code>，前者用于把 ntasks 个任务传递给 worker，后者用于判断是否所有 worker 都工作完了，<code>wg.Wait()</code> 过后才退出 schedule 函数。<br>
-⚠️ registerChan 居然不会 close，为此使用一个新的 channel 用来标记任务是否已经分发完，如果从这个管道获得信号，便停止从 registerChan 读 worker。</p>
-<h2 id="part-iv-handling-worker-failures"><a class="markdownIt-Anchor" href="#part-iv-handling-worker-failures"></a> Part IV: Handling worker failures</h2>
-<p>在上一部分基础上改进，如果 <code>call()</code> 函数返回的是 true，让 worker 继续做新的任务；如果返回 false，那么需要把这个未完成的任务放回任务池（数据结构是 <code>channel</code>），并且放弃这个 worker（<code>wg.Done()</code>）。难点在于确定 worker 真正工作完的时间，就是：</p>
-<ol>
-<li>所有任务都分发出去了</li>
-<li>没有正在运行的执行任务的 worker</li>
-</ol>
-<p>上一部分已经解决了 1，对于 2，我新建一个整数变量作为计数器，记录正在执行任务的 worker 数量，使用 <code>atomic.LoadInt32</code> 和 <code>atomic.AddInt32</code> 进行读写。<br>
-看来这个部分需要熟悉 Go 语言才会做得没那么吃力。。</p>
-<h2 id="part-v-inverted-index-generation-optional"><a class="markdownIt-Anchor" href="#part-v-inverted-index-generation-optional"></a> Part V: Inverted index generation (optional)</h2>
-<p>感觉没什么难度，mapF 函数里用 <code>map[string]bool</code> 维护文档的单词集合。</p>
+<p>接下来记录我的实现，比 DWR 配起来简单多了，感人😆。</p>
+<h2 id="java-实现订阅逻辑"><a class="markdownIt-Anchor" href="#java-实现订阅逻辑"></a> Java 实现订阅逻辑</h2>
+<p><em>SocketioService</em> 负责把消息推送到相应的前端。<code>topicSubscribers</code> 存储每个主题连接了哪些客户端，<code>topicContent</code> 存储每个主题的最新消息，最新消息是解析好的 JSON 字符串，<code>publish</code> 事件表示有新消息推送到前端。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> project.socket.service;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.corundumstudio.socketio.Configuration;</span><br><span class="line"><span class="keyword">import</span> com.corundumstudio.socketio.SocketIOClient;</span><br><span class="line"><span class="keyword">import</span> com.corundumstudio.socketio.SocketIOServer;</span><br><span class="line"><span class="keyword">import</span> org.apache.log4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.DisposableBean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.InitializingBean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Value;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Service;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.HashSet;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"><span class="keyword">import</span> java.util.Set;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SocketioService</span> <span class="keyword">implements</span> <span class="title">InitializingBean</span>, <span class="title">DisposableBean</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Logger logger = Logger.getLogger(SocketioService.class);</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Value</span>(<span class="string">"$&#123;serverHost&#125;"</span>)</span><br><span class="line">    <span class="keyword">private</span> String serverHost;</span><br><span class="line">    <span class="meta">@Value</span>(<span class="string">"$&#123;socketio.port&#125;"</span>)</span><br><span class="line">    <span class="keyword">private</span> Integer socketioPort;</span><br><span class="line">    <span class="keyword">private</span> SocketIOServer server;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 每个主题的订阅用户</span></span><br><span class="line">    <span class="comment">// topic --&gt; set of clients</span></span><br><span class="line">    <span class="keyword">private</span> Map&lt;String, Set&lt;SocketIOClient&gt;&gt; topicSubscribers = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    <span class="comment">// 每个主题的最新消息</span></span><br><span class="line">    <span class="comment">// topic --&gt; latest content</span></span><br><span class="line">    <span class="keyword">private</span> Map&lt;String, String&gt; topicContent = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterPropertiesSet</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Configuration config = <span class="keyword">new</span> Configuration();</span><br><span class="line">        config.setHostname(serverHost);</span><br><span class="line">        config.setPort(socketioPort);</span><br><span class="line">        server = <span class="keyword">new</span> SocketIOServer(config);</span><br><span class="line">        <span class="comment">// 与前端建立连接</span></span><br><span class="line">        server.addConnectListener(client -&gt; &#123;</span><br><span class="line">            logger.info(<span class="string">"user "</span> + client.getHandshakeData().getSingleUrlParam(<span class="string">"user"</span>) + <span class="string">" connected to socketio"</span>);</span><br><span class="line">            String subscriptions = client.getHandshakeData().getSingleUrlParam(<span class="string">"subscriptions"</span>);</span><br><span class="line">            <span class="keyword">for</span> (String topic : subscriptions.split(<span class="string">","</span>)) &#123;</span><br><span class="line">                <span class="keyword">if</span> (topicSubscribers.containsKey(topic)) &#123;</span><br><span class="line">                    topicSubscribers.get(topic).add(client);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    Set&lt;SocketIOClient&gt; s = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">                    s.add(client);</span><br><span class="line">                    topicSubscribers.put(topic, s);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (topicContent.containsKey(topic)) &#123;</span><br><span class="line">                    client.sendEvent(<span class="string">"publish"</span>, topic, topicContent.get(topic));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="comment">// 与前端断开连接</span></span><br><span class="line">        server.addDisconnectListener(client -&gt; &#123;</span><br><span class="line">            logger.info(<span class="string">"user "</span> + client.getHandshakeData().getSingleUrlParam(<span class="string">"user"</span>) + <span class="string">" disconnected to socketio"</span>);</span><br><span class="line">            String subscriptions = client.getHandshakeData().getSingleUrlParam(<span class="string">"subscriptions"</span>);</span><br><span class="line">            <span class="keyword">for</span> (String topic : subscriptions.split(<span class="string">","</span>)) &#123;</span><br><span class="line">                topicSubscribers.get(topic).remove(client);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        server.start();</span><br><span class="line">        logger.info(<span class="string">"socketio started on port "</span> + socketioPort);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">null</span> != server) &#123;</span><br><span class="line">            server.stop();</span><br><span class="line">            logger.info(<span class="string">"socketio stopped"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">publish</span><span class="params">(String topic, String content)</span> </span>&#123;</span><br><span class="line">        topicContent.put(topic, content);</span><br><span class="line">        <span class="keyword">if</span> (topicSubscribers.containsKey(topic)) &#123;</span><br><span class="line">            <span class="keyword">for</span> (SocketIOClient client : topicSubscribers.get(topic)) &#123;</span><br><span class="line">                client.sendEvent(<span class="string">"publish"</span>, topic, content);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="前端整合"><a class="markdownIt-Anchor" href="#前端整合"></a> 前端整合</h2>
+<p>前端入口程序为：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"js/socket.io.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">    $(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="actionscript">        <span class="keyword">const</span> socket = io(<span class="string">'http://&lt;%=request.getServerName()%&gt;:$&#123;socketioPort&#125;'</span>, &#123;</span></span><br><span class="line"><span class="undefined">            query: &#123;</span></span><br><span class="line"><span class="actionscript">                user: <span class="string">"&lt;%=user.getUsername()%&gt;"</span>,</span></span><br><span class="line"><span class="actionscript">                subscriptions: <span class="string">"$&#123;subscriptionsString&#125;"</span></span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="undefined">        &#125;);</span></span><br><span class="line"><span class="undefined">        socket.connect();</span></span><br><span class="line"><span class="actionscript">        socket.on(<span class="string">"publish"</span>, (topic, content) =&gt; &#123;</span></span><br><span class="line"><span class="actionscript">            <span class="comment">// ...</span></span></span><br><span class="line"><span class="undefined">        &#125;);</span></span><br><span class="line"><span class="undefined">    &#125;);</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -571,7 +540,7 @@ doReduce 函数从每个 doMap 输出给目前 reduceTask 的文件 json 解码�
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
-    <a href="https://bbappyuanyuan.github.io/posts/cf72e6da/" title="MIT 6.824 Spring 2018 Lab 1 实验总结">https://bbappyuanyuan.github.io/posts/cf72e6da/</a>
+    <a href="https://bbappyuanyuan.github.io/posts/f58fa22/" title="基于 WebSocket 的 Web 端订阅消息推送">https://bbappyuanyuan.github.io/posts/f58fa22/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
@@ -584,9 +553,7 @@ doReduce 函数从每个 doMap 输出给目前 reduceTask 的文件 json 解码�
       
         <div class="post-tags">
           
-            <a href="/tags/6-824/" rel="tag"># 6.824</a>
-          
-            <a href="/tags/Go/" rel="tag"># Go</a>
+            <a href="/tags/WebSocket/" rel="tag"># WebSocket</a>
           
         </div>
       
@@ -599,8 +566,8 @@ doReduce 函数从每个 doMap 输出给目前 reduceTask 的文件 json 解码�
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/posts/3177a132/" rel="next" title="Code Jam Kickstart Round B 2018 题解">
-                <i class="fa fa-chevron-left"></i> Code Jam Kickstart Round B 2018 题解
+              <a href="/posts/cf72e6da/" rel="next" title="MIT 6.824 Spring 2018 Lab 1 实验总结">
+                <i class="fa fa-chevron-left"></i> MIT 6.824 Spring 2018 Lab 1 实验总结
               </a>
             
           </div>
@@ -608,10 +575,6 @@ doReduce 函数从每个 doMap 输出给目前 reduceTask 的文件 json 解码�
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/posts/f58fa22/" rel="prev" title="基于 WebSocket 的 Web 端订阅消息推送">
-                基于 WebSocket 的 Web 端订阅消息推送 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -826,7 +789,7 @@ doReduce 函数从每个 doMap 输出给目前 reduceTask 的文件 json 解码�
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-text"> 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6824-spring-2018-lab-1-mapreduce"><span class="nav-text"> 6.824 - Spring 2018 Lab 1: MapReduce</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#part-i-mapreduce-input-and-output"><span class="nav-text"> Part I: Map/Reduce input and output</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#part-ii-single-worker-word-count"><span class="nav-text"> Part II: Single-worker word count</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#part-iii-distributing-mapreduce-tasks"><span class="nav-text"> Part III: Distributing MapReduce tasks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#part-iv-handling-worker-failures"><span class="nav-text"> Part IV: Handling worker failures</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#part-v-inverted-index-generation-optional"><span class="nav-text"> Part V: Inverted index generation (optional)</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#java-实现订阅逻辑"><span class="nav-text"> Java 实现订阅逻辑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前端整合"><span class="nav-text"> 前端整合</span></a></li></ol></div>
             
 
           </div>
@@ -990,7 +953,7 @@ doReduce 函数从每个 doMap 输出给目前 reduceTask 的文件 json 解码�
   
     <script>
   window.livereOptions = {
-    refer: 'posts/cf72e6da/'
+    refer: 'posts/f58fa22/'
   };
   (function(d, s) {
     var j, e = d.getElementsByTagName(s)[0];

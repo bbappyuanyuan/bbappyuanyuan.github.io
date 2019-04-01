@@ -15,10 +15,10 @@
 
 
 <html class="theme-next pisces use-motion" lang="zh-CN">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 
 
@@ -32,8 +32,6 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -46,6 +44,21 @@
 
 
 
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=7.1.0">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=7.1.0" color="#222">
 
 
 
@@ -53,40 +66,15 @@
 
 
 
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=6.3.0">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=6.3.0">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=6.3.0">
-
-
-  <link rel="mask-icon" href="/images/favicon.ico?v=6.3.0" color="#222">
-
-
-
-
-
-
-
-
-
-<script type="text/javascript" id="hexo.configurations">
+<script id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    version: '6.3.0',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    version: '7.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
     fancybox: false,
     fastclick: false,
     lazyload: false,
@@ -118,16 +106,17 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="bbappyuanyuan 的博客" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="bbappyuanyuan 的博客" type="application/atom+xml">
 
 
 
+  
+  
+  <link rel="canonical" href="https://bbappyuanyuan.github.io/">
 
-  <link rel="canonical" href="https://bbappyuanyuan.github.io/"/>
 
 
-
-<script type="text/javascript" id="page.configurations">
+<script id="page.configurations">
   CONFIG.page = {
     sidebar: "",
   };
@@ -139,18 +128,20 @@
 
 
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111501815-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async src="//www.googletagmanager.com/gtag/js?id=UA-111501815-1"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !true) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-111501815-1');
+    }
+  </script>
 
-  gtag('config', 'UA-111501815-1');
-</script>
 
 
-
-  <script type="text/javascript">
+  <script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -163,30 +154,31 @@
 
 
 
+
+
+
   <noscript>
-  <style type="text/css">
-    .use-motion .motion-element,
-    .use-motion .brand,
-    .use-motion .menu-item,
-    .sidebar-inner,
-    .use-motion .post-block,
-    .use-motion .pagination,
-    .use-motion .comments,
-    .use-motion .post-header,
-    .use-motion .post-body,
-    .use-motion .collection-title { opacity: initial; }
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
 
-    .use-motion .logo,
-    .use-motion .site-title,
-    .use-motion .site-subtitle {
-      opacity: initial;
-      top: initial;
-    }
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
 
-    .use-motion {
-      .logo-line-before i { left: initial; }
-      .logo-line-after i { right: initial; }
-    }
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
   </style>
 </noscript>
 
@@ -205,7 +197,7 @@
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <div class="site-meta">
     
 
     <div class="custom-logo-site-title">
@@ -219,6 +211,7 @@
       
         <p class="site-subtitle">有些事，现在不做，以后再也不会做了</p>
       
+    
     
   </div>
 
@@ -242,32 +235,68 @@
         
           
           <li class="menu-item menu-item-home menu-item-active">
-    <a href="/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-tags">
-    <a href="/tags/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-categories">
-    <a href="/categories/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-archives">
-    <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
   </li>
 
       
@@ -277,7 +306,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
         </li>
       
     </ul>
@@ -353,11 +382,11 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://bbappyuanyuan.github.io/posts/cf72e6da/">
+    <link itemprop="mainEntityOfPage" href="https://bbappyuanyuan.github.io/posts/f58fa22/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="bbappyuanyuan">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.jpeg">
     </span>
 
@@ -372,9 +401,182 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/posts/cf72e6da/" itemprop="url">
-                  MIT 6.824 Spring 2018 Lab 1 实验总结
-                </a>
+                
+                <a href="/posts/f58fa22/" class="post-title-link" itemprop="url">基于 WebSocket 的 Web 端订阅消息推送</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-01 15:00:00" itemprop="dateCreated datePublished" datetime="2019-04-01T15:00:00+08:00">2019-04-01</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java-Web/" itemprop="url" rel="index"><span itemprop="name">Java Web</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/posts/f58fa22/" class="leancloud_visitors" data-flag-title="基于 WebSocket 的 Web 端订阅消息推送">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>在 <a href="/posts/acf8e3a0/">基于 DWR + ActiveMQ 的 Web 端订阅消息推送</a> 里我实现了 Web 端订阅消息推送，然而，实际测试的时候发现速度不够，而且还不稳定，于是决定抛弃 <code>DWR</code> 和 <code>ActiveMQ</code>，使用 <a href="https://socket.io/" target="_blank" rel="noopener"><code>Socket.IO</code></a>（封装了 <code>WebSocket</code>）做前端推送，自己写逻辑实现订阅逻辑。在前端使用 <a href="http://Socket.IO" target="_blank" rel="noopener">Socket.IO</a> 提供的 JavaScript 客户端，在后端把 <a href="https://github.com/mrniko/netty-socketio" target="_blank" rel="noopener">netty-socketio</a> 整合进基于 Spring + SpringMVC 的 Java Web 后台，作为 <a href="http://Socket.IO" target="_blank" rel="noopener">Socket.IO</a> 服务端。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/posts/f58fa22/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://bbappyuanyuan.github.io/posts/cf72e6da/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="bbappyuanyuan">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="bbappyuanyuan 的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/posts/cf72e6da/" class="post-title-link" itemprop="url">MIT 6.824 Spring 2018 Lab 1 实验总结</a>
               
             
           </h1>
@@ -422,7 +624,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -443,20 +645,21 @@
 
           
             
+            
           
 
           
           
-             <span id="/posts/cf72e6da/" class="leancloud_visitors" data-flag-title="MIT 6.824 Spring 2018 Lab 1 实验总结">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
+            <span id="/posts/cf72e6da/" class="leancloud_visitors" data-flag-title="MIT 6.824 Spring 2018 Lab 1 实验总结">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
           
 
           
@@ -483,11 +686,13 @@
 <p>2019 年暑假在「Face++」云平台部门实习，从事基于分布式系统的研发，组内推荐完成 6.824，我也觉得很有必要系统地巩固这方面知识，便计划两个月内完成这门课。<br>
 由于课程开头说明了 <code>Please do not publish your code or make it available to current or future 6.824 students.</code>，在文章里我不会贴代码，只记录我实现的方法和遇到的坑，如果对实验有什么疑问，欢迎一起讨论。</p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/posts/cf72e6da/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/posts/cf72e6da/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -502,175 +707,8 @@
     
 
     
-
-    
-
-    <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://bbappyuanyuan.github.io/posts/ece178b7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="bbappyuanyuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="bbappyuanyuan 的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/ece178b7/" itemprop="url">
-                  Code Jam Kickstart Round C 2018 题解
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-06-05 20:00:00" itemprop="dateCreated datePublished" datetime="2018-06-05T20:00:00+08:00">2018-06-05</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Code-Jam/" itemprop="url" rel="index"><span itemprop="name">Code Jam</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/posts/ece178b7/" class="leancloud_visitors" data-flag-title="Code Jam Kickstart Round C 2018 题解">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="a-planet-distance"><a class="markdownIt-Anchor" href="#a-planet-distance"></a> <a href="https://code.google.com/codejam/contest/4384486/dashboard#s=p0" target="_blank" rel="noopener">A. Planet Distance</a></h2>
-<p>一轮 dfs 找出环的所有节点，接着从这些节点 bfs，即可求得距离。时间复杂度为 <code>O(n)</code>。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/posts/ece178b7/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
     
 
     
@@ -714,7 +752,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="bbappyuanyuan">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.jpeg">
     </span>
 
@@ -729,9 +767,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/posts/3177a132/" itemprop="url">
-                  Code Jam Kickstart Round B 2018 题解
-                </a>
+                
+                <a href="/posts/3177a132/" class="post-title-link" itemprop="url">Code Jam Kickstart Round B 2018 题解</a>
               
             
           </h1>
@@ -763,7 +800,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -784,20 +821,21 @@
 
           
             
+            
           
 
           
           
-             <span id="/posts/3177a132/" class="leancloud_visitors" data-flag-title="Code Jam Kickstart Round B 2018 题解">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
+            <span id="/posts/3177a132/" class="leancloud_visitors" data-flag-title="Code Jam Kickstart Round B 2018 题解">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
           
 
           
@@ -825,11 +863,13 @@
 <p>求 [L, R] 的合法数字个数，可以转化为求 [1, x] 的合法数字个数。</p>
 <p>不能有数字 9，也就是只允许数字 0～8，这就相当于九进制数，即 [1, x] 的不含 9 的数字个数有 base9(x) 个（x 为不含 9 的十进制数）。而且每连续 9 个不含 9 的数字里，有且只有一个被 9 整除的数（九进制下末位为 0 的数）。因此先把 x 的末位变成 0，让剩余的不含 9 的数字个数能被 9 整除，答案为 <code>brute_force([x - x % 10, x]) + 8 / 9 * base9(x - x % 10)</code>，两部分分别对应代码里的 <code>ret1</code> 和 <code>ret2</code>。</p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/posts/3177a132/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/posts/3177a132/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -843,6 +883,184 @@
 
     
 
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://bbappyuanyuan.github.io/posts/ece178b7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="bbappyuanyuan">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="bbappyuanyuan 的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/posts/ece178b7/" class="post-title-link" itemprop="url">Code Jam Kickstart Round C 2018 题解</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-06-05 20:00:00" itemprop="dateCreated datePublished" datetime="2018-06-05T20:00:00+08:00">2018-06-05</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Code-Jam/" itemprop="url" rel="index"><span itemprop="name">Code Jam</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/posts/ece178b7/" class="leancloud_visitors" data-flag-title="Code Jam Kickstart Round C 2018 题解">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="a-planet-distance"><a class="markdownIt-Anchor" href="#a-planet-distance"></a> <a href="https://code.google.com/codejam/contest/4384486/dashboard#s=p0" target="_blank" rel="noopener">A. Planet Distance</a></h2>
+<p>一轮 dfs 找出环的所有节点，接着从这些节点 bfs，即可求得距离。时间复杂度为 <code>O(n)</code>。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/posts/ece178b7/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
     
 
     
@@ -886,7 +1104,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="bbappyuanyuan">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.jpeg">
     </span>
 
@@ -901,9 +1119,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/posts/1face4da/" itemprop="url">
-                  拼图 GUI 界面 AVATAR 实现
-                </a>
+                
+                <a href="/posts/1face4da/" class="post-title-link" itemprop="url">拼图 GUI 界面 AVATAR 实现</a>
               
             
           </h1>
@@ -951,7 +1168,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -972,20 +1189,21 @@
 
           
             
+            
           
 
           
           
-             <span id="/posts/1face4da/" class="leancloud_visitors" data-flag-title="拼图 GUI 界面 AVATAR 实现">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
+            <span id="/posts/1face4da/" class="leancloud_visitors" data-flag-title="拼图 GUI 界面 AVATAR 实现">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
           
 
           
@@ -1017,11 +1235,13 @@
 <p>到目前为止我已经实现了 pattern 提取的整个过程，接下来要做一些列实验和写论文。无论是实验或作品展示，都需要用户能够操作的 GUI 界面。但是实验室没有啊，怎么办？（其实实验室是有个用 Java Swing 做的半成品，Java 6 年代做的，研究了半天决定放弃）于是做数据挖掘的我又做起了熟悉的前端，前前后后花一个月做了出来。这篇文章介绍用 pattern 拼图的 GUI 界面实现（老板指定名字为 <code>AVATAR</code>，忘了问缘由）。至于 pattern 提取算法，等文章发出来再做介绍吧。</p>
 <img src="/posts/1face4da/demo.png">
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/posts/1face4da/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/posts/1face4da/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1035,6 +1255,9 @@
 
     
 
+    
+      
+    
     
 
     
@@ -1078,7 +1301,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="bbappyuanyuan">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.jpeg">
     </span>
 
@@ -1093,9 +1316,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/posts/acf8e3a0/" itemprop="url">
-                  基于 DWR + ActiveMQ 的 Web 端订阅消息推送
-                </a>
+                
+                <a href="/posts/acf8e3a0/" class="post-title-link" itemprop="url">基于 DWR + ActiveMQ 的 Web 端订阅消息推送</a>
               
             
           </h1>
@@ -1131,7 +1353,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -1152,20 +1374,21 @@
 
           
             
+            
           
 
           
           
-             <span id="/posts/acf8e3a0/" class="leancloud_visitors" data-flag-title="基于 DWR + ActiveMQ 的 Web 端订阅消息推送">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
+            <span id="/posts/acf8e3a0/" class="leancloud_visitors" data-flag-title="基于 DWR + ActiveMQ 的 Web 端订阅消息推送">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
           
 
           
@@ -1189,13 +1412,15 @@
       
         
           <p>基于 Web 的消息订阅／发布系统可以分两部分考虑：一是使用什么工具搭建订阅／发布系统，二是如何进行 Web 前后端交互。</p>
-<p>对于前者，业界很多 MQ 产品可以满足需求：<code>RabbitMQ</code>、<code>ActiveMQ</code>、<code>ZeroMQ</code> 等，本项目采用 <code>ActiveMQ</code>。关于 Web 前后端交互，目前最流行的技术可能是 HTML5 的 <code>WebSocket</code>，然而项目方要求兼容 IE8，因此只能寻求旧一点的技术，<code>DWR</code> 完全能满足项目的需求。</p>
+<p>对于前者，业界很多 MQ 产品可以满足需求：<code>RabbitMQ</code>、<code>ActiveMQ</code>、<code>ZeroMQ</code> 等，本项目采用 <code>ActiveMQ</code>。关于 Web 前后端交互，目前最流行的技术是 HTML5 的 <code>WebSocket</code>，然而项目方要求兼容 IE8，因此只能寻求旧一点的技术，<code>DWR</code> 完全能满足项目的需求。</p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/posts/acf8e3a0/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/posts/acf8e3a0/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1209,6 +1434,9 @@
 
     
 
+    
+      
+    
     
 
     
@@ -1252,7 +1480,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="bbappyuanyuan">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.jpeg">
     </span>
 
@@ -1267,9 +1495,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/posts/721dda82/" itemprop="url">
-                  向 HTML 表格添加选择框列筛选器
-                </a>
+                
+                <a href="/posts/721dda82/" class="post-title-link" itemprop="url">向 HTML 表格添加选择框列筛选器</a>
               
             
           </h1>
@@ -1317,7 +1544,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -1338,20 +1565,21 @@
 
           
             
+            
           
 
           
           
-             <span id="/posts/721dda82/" class="leancloud_visitors" data-flag-title="向 HTML 表格添加选择框列筛选器">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
+            <span id="/posts/721dda82/" class="leancloud_visitors" data-flag-title="向 HTML 表格添加选择框列筛选器">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
           
 
           
@@ -1378,11 +1606,13 @@
 <h2 id="使用-datatables-自带例子"><a class="markdownIt-Anchor" href="#使用-datatables-自带例子"></a> 使用 DataTables 自带例子</h2>
 <p><a href="https://www.datatables.net/" target="_blank" rel="noopener">DataTables</a> 是特别实用的 jQuery 表格插件，官方文档介绍了添加列筛选器的方式（详见 <a href="https://www.datatables.net/release-datatables/examples/api/multi_filter_select.html" target="_blank" rel="noopener">https://www.datatables.net/release-datatables/examples/api/multi_filter_select.html</a>）：</p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/posts/721dda82/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/posts/721dda82/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1396,6 +1626,9 @@
 
     
 
+    
+      
+    
     
 
     
@@ -1439,7 +1672,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="bbappyuanyuan">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.jpeg">
     </span>
 
@@ -1454,9 +1687,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/posts/b57866e8/" itemprop="url">
-                  LeetCode「Hard」问题题解（201～300）
-                </a>
+                
+                <a href="/posts/b57866e8/" class="post-title-link" itemprop="url">LeetCode「Hard」问题题解（201～300）</a>
               
             
           </h1>
@@ -1488,7 +1720,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -1509,20 +1741,21 @@
 
           
             
+            
           
 
           
           
-             <span id="/posts/b57866e8/" class="leancloud_visitors" data-flag-title="LeetCode「Hard」问题题解（201～300）">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
+            <span id="/posts/b57866e8/" class="leancloud_visitors" data-flag-title="LeetCode「Hard」问题题解（201～300）">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
           
 
           
@@ -1548,11 +1781,13 @@
           <h2 id="212-word-search-ii"><a class="markdownIt-Anchor" href="#212-word-search-ii"></a> <a href="https://leetcode.com/problems/word-search-ii" target="_blank" rel="noopener">212. Word Search II</a></h2>
 <p>对单词表建立 Trie 树，<code>dfs</code> 暴力搜索。</p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/posts/b57866e8/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/posts/b57866e8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1566,6 +1801,9 @@
 
     
 
+    
+      
+    
     
 
     
@@ -1609,7 +1847,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="bbappyuanyuan">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.jpeg">
     </span>
 
@@ -1624,9 +1862,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/posts/9ba67bd/" itemprop="url">
-                  LeetCode「Hard」问题题解（101～200）
-                </a>
+                
+                <a href="/posts/9ba67bd/" class="post-title-link" itemprop="url">LeetCode「Hard」问题题解（101～200）</a>
               
             
           </h1>
@@ -1658,7 +1895,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -1679,20 +1916,21 @@
 
           
             
+            
           
 
           
           
-             <span id="/posts/9ba67bd/" class="leancloud_visitors" data-flag-title="LeetCode「Hard」问题题解（101～200）">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
+            <span id="/posts/9ba67bd/" class="leancloud_visitors" data-flag-title="LeetCode「Hard」问题题解（101～200）">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
           
 
           
@@ -1718,11 +1956,13 @@
           <h2 id="115-distinct-subsequences"><a class="markdownIt-Anchor" href="#115-distinct-subsequences"></a> <a href="https://leetcode.com/problems/distinct-subsequences" target="_blank" rel="noopener">115. Distinct Subsequences</a></h2>
 <p>动态规划，f[i][j] 表示 S 的前 i 位形成 T 的前 j 位的子序列的数目。</p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/posts/9ba67bd/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/posts/9ba67bd/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1736,6 +1976,9 @@
 
     
 
+    
+      
+    
     
 
     
@@ -1779,7 +2022,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="bbappyuanyuan">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.jpeg">
     </span>
 
@@ -1794,9 +2037,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/posts/fcb10a97/" itemprop="url">
-                  LeetCode「Hard」问题题解（1～100）
-                </a>
+                
+                <a href="/posts/fcb10a97/" class="post-title-link" itemprop="url">LeetCode「Hard」问题题解（1～100）</a>
               
             
           </h1>
@@ -1828,7 +2070,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -1849,20 +2091,21 @@
 
           
             
+            
           
 
           
           
-             <span id="/posts/fcb10a97/" class="leancloud_visitors" data-flag-title="LeetCode「Hard」问题题解（1～100）">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
+            <span id="/posts/fcb10a97/" class="leancloud_visitors" data-flag-title="LeetCode「Hard」问题题解（1～100）">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
           
 
           
@@ -1888,11 +2131,13 @@
           <h2 id="4-median-of-two-sorted-arrays"><a class="markdownIt-Anchor" href="#4-median-of-two-sorted-arrays"></a> <a href="https://leetcode.com/problems/median-of-two-sorted-arrays" target="_blank" rel="noopener">4. Median of Two Sorted Arrays</a></h2>
 <p>问题等价为找 nums1 和 nums2 的第 k 大，用递归解决：</p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/posts/fcb10a97/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/posts/fcb10a97/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1907,176 +2152,8 @@
     
 
     
-
-    
-
-    <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://bbappyuanyuan.github.io/posts/dc1b68a6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="bbappyuanyuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="bbappyuanyuan 的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/dc1b68a6/" itemprop="url">
-                  MiniJava 编译器前端
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2015-12-03 08:24:13" itemprop="dateCreated datePublished" datetime="2015-12-03T08:24:13+08:00">2015-12-03</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/其他/" itemprop="url" rel="index"><span itemprop="name">其他</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/posts/dc1b68a6/" class="leancloud_visitors" data-flag-title="MiniJava 编译器前端">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="介绍"><a class="markdownIt-Anchor" href="#介绍"></a> 介绍</h2>
-<p>「编译原理」课程项目——利用 <a href="http://www.antlr.org/" target="_blank" rel="noopener">ANTLR4</a> 工具，为 MiniJava 语言构造一个简易的编译器前端，将输入转化为抽象语法树，并进行一定的语义检查。</p>
-<p>项目代码已开源在 <a href="https://github.com/bbappyuanyuan/MiniJava" target="_blank" rel="noopener">GitHub</a>。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/posts/dc1b68a6/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
     
 
     
@@ -2104,6 +2181,10 @@
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
 
 
           </div>
@@ -2122,23 +2203,20 @@
   </div>
 
   <aside id="sidebar" class="sidebar">
-    
     <div class="sidebar-inner">
 
       
 
       
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/avatar.jpeg"
-                alt="bbappyuanyuan" />
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpeg" alt="bbappyuanyuan">
             
               <p class="site-author-name" itemprop="name">bbappyuanyuan</p>
-              <p class="site-description motion-element" itemprop="description"></p>
+              <div class="site-description motion-element" itemprop="description"></div>
           </div>
 
           
@@ -2148,7 +2226,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2158,7 +2236,11 @@
                 
                 
                 <div class="site-state-item site-state-categories">
-                  <a href="/categories/index.html">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
                     
                     
                       
@@ -2183,7 +2265,11 @@
                 
                 
                 <div class="site-state-item site-state-tags">
-                  <a href="/tags/index.html">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
                     
                     
                       
@@ -2206,7 +2292,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">10</span>
+                      
+                    
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -2224,22 +2312,35 @@
           
 
           
+
+          
             <div class="links-of-author motion-element">
               
                 <span class="links-of-author-item">
-                  <a href="https://github.com/bbappyuanyuan" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
                   
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/bbappyuanyuan" title="GitHub &rarr; https://github.com/bbappyuanyuan" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="mailto:zfyuan.sh@gmail.com" target="_blank" title="Gmail"><i class="fa fa-fw fa-google"></i>Gmail</a>
                   
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:zfyuan.sh@gmail.com" title="E-Mail &rarr; mailto:zfyuan.sh@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-google"></i>E-Mail</a>
                 </span>
               
             </div>
           
 
-          
           
 
           
@@ -2251,7 +2352,7 @@
           
 
         </div>
-      </section>
+      </div>
 
       
 
@@ -2259,6 +2360,7 @@
 
     </div>
   </aside>
+  
 
 
         
@@ -2267,7 +2369,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2016 – <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; 2016 – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
@@ -2286,15 +2388,12 @@
 
 
 
-
-
         
 
 
 
 
-
-  <script type="text/javascript">
+  <script>
     (function() {
       var hm = document.createElement("script");
       hm.src = "//tajs.qq.com/stats?sId=65974637";
@@ -2302,6 +2401,7 @@
       s.parentNode.insertBefore(hm, s);
     })();
   </script>
+
 
 
 
@@ -2320,7 +2420,7 @@
     
 
     
-	
+
     
 
     
@@ -2328,7 +2428,7 @@
 
   
 
-<script type="text/javascript">
+<script>
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -2360,27 +2460,21 @@
 
 
   
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
 
   
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
 
   
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+  <script src="/js/utils.js?v=7.1.0"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+  <script src="/js/motion.js?v=7.1.0"></script>
 
 
 
@@ -2388,9 +2482,9 @@
   
 
 
-  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+  <script src="/js/affix.js?v=7.1.0"></script>
 
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
 
 
 
@@ -2399,27 +2493,20 @@
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+  <script src="/js/next-boot.js?v=7.1.0"></script>
 
 
+  
+
+  
+
+  
 
   
 
 
 
   
-
-
-
-
-
-
-
-
-
-
-  
-
 
 
 
@@ -2433,28 +2520,24 @@
   <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
   
 
-  <script src="/js/src/algolia-search.js?v=6.3.0"></script>
+  <script src="/js/algolia-search.js?v=7.1.0"></script>
 
 
 
   
-
   
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>AV.initialize("4UFUAbLct6dH8lDY6kRurCuP-gzGzoHsz", "rG3Q01dqfbp1rQAGsMw5gqAu");</script>
   <script>
+    
     function showTime(Counter) {
-      var query = new AV.Query(Counter);
       var entries = [];
-      var $visitors = $(".leancloud_visitors");
+      var $visitors = $('.leancloud_visitors');
 
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
+      $visitors.each(function() {
+        entries.push( $(this).attr('id').trim() );
       });
 
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url: { '$in': entries } }) })
+        .done(function({ results }) {
           var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
 
           if (results.length === 0) {
@@ -2464,72 +2547,48 @@
 
           for (var i = 0; i < results.length; i++) {
             var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
+            var url = item.url;
+            var time = item.time;
             var element = document.getElementById(url);
 
             $(element).find(COUNT_CONTAINER_REF).text(time);
           }
-          for(var i = 0; i < entries.length; i++) {
+          for (var i = 0; i < entries.length; i++) {
             var url = entries[i];
             var element = document.getElementById(url);
             var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
+            if (countSpan.text() == '') {
               countSpan.text(0);
             }
           }
         })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
+        .fail(function ({ responseJSON }) {
+          console.log('LeanCloud Counter Error: ' + responseJSON.code + ' ' + responseJSON.error);
         });
     }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            
-              var $element = $(document.getElementById(url));
-              $element.find('.leancloud-visitors-count').text(counter.get('time'));
-            
-            counter.save(null, {
-              success: function(counter) {
-                
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            
-              var $element = $(document.getElementById(url));
-              $element.find('.leancloud-visitors-count').text('Counter not initialized! See more at console err msg.');
-              console.error('ATTENTION! LeanCloud counter has security bug, see here how to solve it: https://github.com/theme-next/hexo-leancloud-counter-security. \n But you also can use LeanCloud without security, by set \'security\' option to \'false\'.');
-            
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
+    
 
     $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + '4UFUAbLct6dH8lDY6kRurCuP-gzGzoHsz')
+        .done(function({ api_server }) {
+          var Counter = function(method, url, data) {
+            return $.ajax({
+              method: method,
+              url: 'https://' + api_server + '/1.1' + url,
+              headers: {
+                'X-LC-Id': '4UFUAbLct6dH8lDY6kRurCuP-gzGzoHsz',
+                'X-LC-Key': 'rG3Q01dqfbp1rQAGsMw5gqAu',
+                'Content-Type': 'application/json',
+              },
+              data: data
+            });
+          };
+          
+            if ($('.post-title-link').length >= 1) {
+              showTime(Counter);
+            }
+          
+        });
     });
   </script>
 
@@ -2538,141 +2597,107 @@
   
 
   
+  
+
+  
+  
+    
+      
+    
+      
+    
+      
+    
+      
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@0/dist/katex.min.css">
+
+
+    
+  
+
+
+  
+
+  
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 <script>
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
+  $('.highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
 </script>
 
 
   
-  
 
   
-  
-    
-      
-    
-      
-        
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-  
-
-  
-    
-      <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@0.9.0/dist/katex.min.css" type="text/css">
-
-   
-  
-
-
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  <style>
-    .copy-btn {
-      display: inline-block;
-      padding: 6px 12px;
-      font-size: 13px;
-      font-weight: 700;
-      line-height: 20px;
-      color: #333;
-      white-space: nowrap;
-      vertical-align: middle;
-      cursor: pointer;
-      background-color: #eee;
-      background-image: linear-gradient(#fcfcfc, #eee);
-      border: 1px solid #d5d5d5;
-      border-radius: 3px;
-      user-select: none;
-      outline: 0;
-    }
-
-    .highlight-wrap .copy-btn {
-      transition: opacity .3s ease-in-out;
-      opacity: 0;
-      padding: 2px 6px;
-      position: absolute;
-      right: 4px;
-      top: 8px;
-    }
-
-    .highlight-wrap:hover .copy-btn,
-    .highlight-wrap .copy-btn:focus {
-      opacity: 1
-    }
-
-    .highlight-wrap {
-      position: relative;
-    }
-  </style>
-  <script>
-    $('.highlight').each(function (i, e) {
-      var $wrap = $('<div>').addClass('highlight-wrap')
-      $(e).after($wrap)
-      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
-        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
-          return $(e).text()
-        }).toArray().join('\n')
-        var ta = document.createElement('textarea')
-        document.body.appendChild(ta)
-        ta.style.position = 'absolute'
-        ta.style.top = '0px'
-        ta.style.left = '0px'
-        ta.value = code
-        ta.select()
-        ta.focus()
-        var result = document.execCommand('copy')
-        document.body.removeChild(ta)
-        
-          if(result)$(this).text('复制成功')
-          else $(this).text('复制失败')
-        
-        $(this).blur()
-      })).on('mouseleave', function (e) {
-        var $b = $(this).find('.copy-btn')
-        setTimeout(function () {
-          $b.text('复制')
-        }, 300)
-      }).append(e)
-    })
-  </script>
-
 
 </body>
 </html>
